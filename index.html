@@ -1,0 +1,1922 @@
+<!doctype html><html><head><meta charset=utf8><meta name="description" content="The 2027 Budget Template by Whealth with Meag"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>The 2027 Budget Template | Whealth with Meag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ================= TOKENS ================= */
+:root{
+  color-scheme: light;
+  --paper:        #F7F5F1;
+  --paper-raised: #FFFFFF;
+  --paper-sunken: #EEEBE4;
+  --ink:          #23282A;
+  --ink-2:        #5F6E72;
+  --ink-mute:     #98A0A2;
+  --line:         #E4E0D8;
+  --line-strong:  #D3CDC0;
+  --gold:         #B2735A;
+  --gold-ink:     #8A5641;
+  --gold-soft:    #F2E4DA;
+  --teal:         #56676B;
+  --teal-soft:    #E3E7E7;
+  --brick:        #AE564C;
+  --brick-soft:   #F2E0DC;
+  --sage:         #65835F;
+  --sage-soft:    #E5EBE1;
+  --shadow:       rgba(45,50,48,0.08);
+  --focus:        #56676B;
+
+  /* chart roles (from validated documented palette) */
+  --c-surface:    #fcfcfb;
+  --c-ink:        #0b0b0b;
+  --c-ink-2:      #52514e;
+  --c-mute:       #898781;
+  --c-grid:       #e1e0d9;
+  --c-axis:       #c3c2b7;
+  --c-blue:       #2a78d6;
+  --c-red:        #e34948;
+  --c-aqua:       #1baf7a;
+  --c-yellow:     #eda100;
+  --c-magenta:    #e87ba4;
+  --c-green:      #008300;
+  --c-violet:     #4a3aa7;
+  --c-good:       #0ca30c;
+  --c-warn:       #fab219;
+  --c-serious:    #ec835a;
+  --c-crit:       #d03b3b;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:        #1A1C1B;
+    --paper-raised: #242726;
+    --paper-sunken: #151716;
+    --ink:          #EDEAE3;
+    --ink-2:        #A9B6B8;
+    --ink-mute:     #7C8486;
+    --line:         #353935;
+    --line-strong:  #464A45;
+    --gold:         #D19A80;
+    --gold-ink:     #F0D7C7;
+    --gold-soft:    #3A2B21;
+    --teal:         #92A6A9;
+    --teal-soft:    #2A3334;
+    --brick:        #CE8378;
+    --brick-soft:   #3A2521;
+    --sage:         #92B88C;
+    --sage-soft:    #223523;
+    --shadow:       rgba(0,0,0,0.5);
+    --focus:        #92A6A9;
+
+    --c-surface:    #1a1a19;
+    --c-ink:        #ffffff;
+    --c-ink-2:      #c3c2b7;
+    --c-mute:       #898781;
+    --c-grid:       #2c2c2a;
+    --c-axis:       #383835;
+    --c-blue:       #3987e5;
+    --c-red:        #e66767;
+    --c-aqua:       #199e70;
+    --c-yellow:     #c98500;
+    --c-magenta:    #d55181;
+    --c-green:      #008300;
+    --c-violet:     #9085e9;
+    --c-good:       #0ca30c;
+    --c-warn:       #fab219;
+    --c-serious:    #ec835a;
+    --c-crit:       #d03b3b;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:        #1A1C1B;
+  --paper-raised: #242726;
+  --paper-sunken: #151716;
+  --ink:          #EDEAE3;
+  --ink-2:        #A9B6B8;
+  --ink-mute:     #7C8486;
+  --line:         #353935;
+  --line-strong:  #464A45;
+  --gold:         #D19A80;
+  --gold-ink:     #F0D7C7;
+  --gold-soft:    #3A2B21;
+  --teal:         #92A6A9;
+  --teal-soft:    #2A3334;
+  --brick:        #CE8378;
+  --brick-soft:   #3A2521;
+  --sage:         #92B88C;
+  --sage-soft:    #223523;
+  --shadow:       rgba(0,0,0,0.5);
+  --focus:        #92A6A9;
+
+  --c-surface:    #1a1a19;
+  --c-ink:        #ffffff;
+  --c-ink-2:      #c3c2b7;
+  --c-mute:       #898781;
+  --c-grid:       #2c2c2a;
+  --c-axis:       #383835;
+  --c-blue:       #3987e5;
+  --c-red:        #e66767;
+  --c-aqua:       #199e70;
+  --c-yellow:     #c98500;
+  --c-magenta:    #d55181;
+  --c-green:      #008300;
+  --c-violet:     #9085e9;
+  --c-good:       #0ca30c;
+  --c-warn:       #fab219;
+  --c-serious:    #ec835a;
+  --c-crit:       #d03b3b;
+}
+
+/* ================= BASE ================= */
+*{box-sizing:border-box;}
+html,body{margin:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:"Instrument Serif",Georgia,"Times New Roman",serif;
+  font-weight:400;
+  margin:0;
+  text-wrap:balance;
+  color:var(--ink);
+  letter-spacing:0;
+}
+a{color:var(--teal);}
+.num{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums;}
+button{font-family:inherit;}
+input,select,textarea{font-family:inherit; font-size:14px; color:var(--ink); background:var(--paper-raised); border:1px solid var(--line-strong); border-radius:6px; padding:7px 9px;}
+input:focus,select:focus,textarea:focus,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--focus); outline-offset:1px;}
+input.num-input{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums; text-align:right;}
+table{border-collapse:collapse; width:100%;}
+::selection{background:var(--gold-soft);}
+@media (prefers-reduced-motion:reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+
+/* ================= LAYOUT ================= */
+.app{display:flex; min-height:100vh;}
+.rail{
+  width:248px; flex:0 0 248px;
+  background:var(--paper-sunken);
+  border-right:1px solid var(--line);
+  padding:22px 14px 18px;
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+.brand{display:flex; align-items:center; gap:10px; padding:0 8px 18px; border-bottom:1px solid var(--line); margin-bottom:14px;}
+.brand-mark{width:34px;height:34px;flex:0 0 34px;}
+.brand-text .eyebrow{font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--teal); font-weight:700;}
+.brand-text h1{font-size:18px; line-height:1.15;}
+.nav-group{margin-bottom:4px;}
+.nav-group.dim{opacity:.5; transition:opacity .15s ease;}
+.nav-group.dim:hover{opacity:.85;}
+.nav-label{font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-mute); padding:14px 10px 6px;}
+.nav-btn{
+  display:flex; align-items:center; gap:10px; width:100%; text-align:left;
+  padding:8px 10px; border-radius:7px; border:none; background:none; cursor:pointer;
+  color:var(--ink-2); font-size:13.5px; font-weight:500;
+}
+.nav-btn svg{width:16px;height:16px;flex:0 0 16px; opacity:.8;}
+.nav-btn:hover{background:var(--paper-raised); color:var(--ink);}
+.nav-btn[aria-current="true"]{background:var(--gold-soft); color:var(--gold-ink); font-weight:600;}
+.nav-btn[aria-current="true"] svg{opacity:1;}
+.rail-foot{margin-top:16px; padding-top:12px; border-top:1px solid var(--line);}
+
+.main{flex:1; min-width:0; padding:28px 34px 60px;}
+.main-inner{max-width:1080px; margin:0 auto;}
+
+.page-head{margin-bottom:22px; display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;}
+.page-head h2{font-size:26px;}
+.page-head .sub{color:var(--ink-2); font-size:13.5px; margin-top:4px; max-width:60ch;}
+.route{display:flex; align-items:center; gap:6px; font-size:11px; color:var(--ink-mute); letter-spacing:.04em; text-transform:uppercase; margin-bottom:6px;}
+.route .dot{width:4px;height:4px;border-radius:50%;background:var(--line-strong);}
+
+.card{
+  background:var(--paper-raised);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:20px 22px;
+  margin-bottom:18px;
+  box-shadow:0 1px 2px var(--shadow);
+}
+.card > h3{font-size:16px; margin-bottom:2px;}
+.card .hint{color:var(--ink-2); font-size:12.5px; margin-bottom:14px; max-width:70ch;}
+.card-head{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:4px;}
+
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+.grid-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;}
+.grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+@media (max-width:860px){ .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;} }
+
+.stat{background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 16px;}
+.stat .label{font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-mute); font-weight:600;}
+.stat .val{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; font-size:22px; margin-top:4px; color:var(--ink);}
+.stat .delta{font-size:12px; margin-top:3px; font-weight:600;}
+.stat .delta.good{color:var(--sage);}
+.stat .delta.bad{color:var(--brick);}
+
+.pill-row{display:flex; gap:6px; flex-wrap:wrap;}
+.pill{
+  border:1px solid var(--line-strong); background:var(--paper-raised); color:var(--ink-2);
+  border-radius:999px; padding:6px 13px; font-size:12.5px; font-weight:600; cursor:pointer;
+}
+.pill[aria-pressed="true"]{background:var(--teal); color:#fff; border-color:var(--teal);}
+.pill:hover:not([aria-pressed="true"]){border-color:var(--ink-mute);}
+
+.btn{
+  display:inline-flex; align-items:center; gap:7px; border-radius:7px; border:1px solid var(--line-strong);
+  background:var(--paper-raised); color:var(--ink); font-size:13px; font-weight:600; padding:8px 14px; cursor:pointer;
+}
+.btn:hover{border-color:var(--ink-mute);}
+.btn.primary{background:var(--teal); border-color:var(--teal); color:#fff;}
+.btn.primary:hover{filter:brightness(1.06);}
+.btn.ghost{background:none; border-color:transparent; color:var(--ink-2);}
+.btn.danger{color:var(--brick); border-color:var(--brick-soft);}
+.btn.small{padding:5px 10px; font-size:12px;}
+.btn svg{width:14px;height:14px;}
+
+.table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:10px;}
+table.grid{font-size:13px; min-width:100%;}
+table.grid th,table.grid td{padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap;}
+table.grid thead th{
+  background:var(--paper-sunken); color:var(--ink-2); font-weight:600; font-size:11.5px;
+  text-transform:uppercase; letter-spacing:.03em; text-align:right; position:sticky; top:0;
+}
+table.grid thead th:first-child, table.grid td:first-child{text-align:left; position:sticky; left:0; background:var(--paper-raised); white-space:normal; min-width:245px;}
+table.grid thead th:first-child{background:var(--paper-sunken);}
+table.grid td{text-align:right;}
+table.grid tfoot td{font-weight:700; border-top:2px solid var(--line-strong); border-bottom:none; background:var(--paper-sunken);}
+table.grid tfoot td:first-child{background:var(--paper-sunken);}
+table.grid tbody tr:hover td{background:var(--paper-sunken);}
+table.grid input.cell, table.grid select.cell{
+  width:74px; border:1px solid transparent; background:transparent; text-align:right; padding:3px 4px; border-radius:4px;
+}
+table.grid input.cell:hover, table.grid select.cell:hover{border-color:var(--line-strong);}
+table.grid input.cell:focus, table.grid select.cell:focus{background:var(--paper); border-color:var(--focus);}
+table.grid input.cell.standalone, table.grid select.cell.standalone{border-color:var(--line-strong); background:var(--paper);}
+.row-label-input{border:1px solid transparent; background:transparent; width:100%; font-weight:500; padding:3px 4px; border-radius:4px;}
+.row-label-static{font-weight:500; padding:3px 4px; color:var(--ink);}
+.row-label-input:hover{border-color:var(--line-strong);}
+.row-del{opacity:.45; background:none; border:none; cursor:pointer; padding:4px; color:var(--brick); display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:5px;}
+.row-del svg{width:13px;height:13px;}
+.row-del:hover{opacity:1; background:var(--brick-soft);}
+
+.badge{display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; padding:3px 9px; border-radius:999px;}
+.badge.good{background:var(--sage-soft); color:var(--sage);}
+.badge.warn{background:#fdecc4; color:#8a5a06;}
+:root:not([data-theme="light"]) .badge.warn, :root[data-theme="dark"] .badge.warn{background:#4a3a12; color:var(--c-warn);}
+.badge.bad{background:var(--brick-soft); color:var(--brick);}
+.badge svg{width:11px;height:11px;}
+
+.divider-route{
+  height:1px; margin:26px 0; border:none;
+  background-image:linear-gradient(90deg, var(--line-strong) 0 6px, transparent 6px 12px);
+  background-size:12px 1px; background-repeat:repeat-x;
+}
+
+.field{display:flex; flex-direction:column; gap:5px; margin-bottom:12px;}
+.field label{font-size:12px; font-weight:600; color:var(--ink-2);}
+.field .desc{font-size:11.5px; color:var(--ink-mute);}
+.field-row{display:flex; gap:12px; flex-wrap:wrap;}
+.field-row .field{flex:1; min-width:150px;}
+
+.callout{border-left:3px solid var(--gold); background:var(--gold-soft); border-radius:0 8px 8px 0; padding:12px 14px; font-size:12.5px; color:var(--ink-2); margin-bottom:16px;}
+.callout.teal{border-color:var(--teal); background:var(--teal-soft);}
+.callout strong{color:var(--ink);}
+
+.chip-toggle{display:inline-flex; border:1px solid var(--line-strong); border-radius:8px; overflow:hidden;}
+.chip-toggle button{border:none; background:var(--paper-raised); color:var(--ink-2); font-size:12.5px; font-weight:600; padding:7px 13px; cursor:pointer;}
+.chip-toggle button[aria-pressed="true"]{background:var(--teal); color:#fff;}
+
+.legend{display:flex; gap:14px; font-size:12px; color:var(--ink-2); flex-wrap:wrap; margin-top:8px;}
+.legend .sw{display:inline-block; width:10px;height:10px;border-radius:2px; margin-right:5px; vertical-align:-1px;}
+
+::-webkit-scrollbar{height:8px; width:8px;}
+::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:8px;}
+
+.sr-only{position:absolute; width:1px;height:1px; overflow:hidden; clip:rect(0,0,0,0);}
+.section{display:none;}
+.section.active{display:block;}
+.empty-state{text-align:center; padding:30px 10px; color:var(--ink-mute); font-size:13px;}
+.save-note{font-size:11.5px; color:var(--ink-mute); display:flex; align-items:center; gap:6px;}
+.save-note svg{width:12px;height:12px;}
+
+.menu-btn{display:none; border:1px solid var(--line-strong); background:var(--paper-raised); border-radius:7px; padding:7px 9px; margin-bottom:14px; cursor:pointer;}
+@media (max-width:760px){
+  .rail{position:fixed; left:0; top:0; height:100vh; transform:translateX(-100%); transition:transform .18s ease; z-index:40; box-shadow:2px 0 12px var(--shadow);}
+  .rail.open{transform:translateX(0);}
+  .main{padding:20px 16px 50px;}
+  .menu-btn{display:inline-flex;}
+  .rail-scrim{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:35;}
+}
+</style>
+<div class="app">
+  <div id="railScrim" class="rail-scrim" style="display:none;"></div>
+  <nav class="rail" id="rail" aria-label="Sections">
+    <div class="brand">
+      <div class="brand-text">
+        <div class="eyebrow">Whealth with Meag</div>
+        <h1>The 2027<br>Budget Template</h1>
+      </div>
+    </div>
+    <div id="navMount"></div>
+    <div class="rail-foot">
+      <div class="save-note"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5 8 14l8-9" stroke="currentColor" stroke-width="1.6" fill="none"/></svg><span id="saveNote">Saved on this device</span></div>
+      <button class="btn small" id="btnUndo" style="width:100%;margin-top:10px;" disabled title="Undo the last change (Ctrl/Cmd+Z)">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h8a4 4 0 1 1 0 8h-2"/><path d="M4 8 7.5 4.5M4 8l3.5 3.5"/></svg>
+        Undo last change
+      </button>
+    </div>
+  </nav>
+  <main class="main">
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation">
+      <svg width="16" height="16" viewBox="0 0 20 20"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.6"/></svg>
+    </button>
+    <div class="main-inner" id="mainMount"></div>
+  </main>
+</div>
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   CONSTANTS
+   ============================================================ */
+var MONTHS = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
+var MONTH_LABEL = {jan:"January",feb:"February",mar:"March",apr:"April",may:"May",jun:"June",jul:"July",aug:"August",sep:"September",oct:"October",nov:"November",dec:"December"};
+var MONTH_SHORT = {jan:"Jan",feb:"Feb",mar:"Mar",apr:"Apr",may:"May",jun:"Jun",jul:"Jul",aug:"Aug",sep:"Sep",oct:"Oct",nov:"Nov",dec:"Dec"};
+var QUARTERS = [
+  {id:"q1", label:"Q1", months:["jan","feb","mar"]},
+  {id:"q2", label:"Q2", months:["apr","may","jun"]},
+  {id:"q3", label:"Q3", months:["jul","aug","sep"]},
+  {id:"q4", label:"Q4", months:["oct","nov","dec"]}
+];
+var YEAR = 2027;
+
+var SE_EXPENSE_CATS = [
+  "Home Office","Software & Subscriptions","Contract Labor","Supplies & Materials",
+  "Professional & Legal Fees","Marketing & Advertising","Travel","Meals (50% deductible)",
+  "Equipment","Continuing Education","Business Insurance","Mileage","Other"
+];
+
+var TAX_DEFAULTS = {
+  filingStatus:"single",
+  standardDeduction:{single:16100, mfj:32200, hoh:24150},
+  brackets:{
+    single:[[0,0.10],[12400,0.12],[50400,0.22],[105700,0.24],[201775,0.32],[256225,0.35],[640600,0.37]],
+    mfj:[[0,0.10],[24800,0.12],[100800,0.22],[211400,0.24],[403550,0.32],[512450,0.35],[768700,0.37]],
+    hoh:[[0,0.10],[17700,0.12],[67450,0.22],[105700,0.24],[201750,0.32],[256200,0.35],[640600,0.37]]
+  },
+  seWageBase:184500,
+  addlMedicareThreshold:{single:200000, mfj:250000, hoh:200000, mfs:125000},
+  safeHarborAgiThreshold:150000,
+  method:"priorYear", /* priorYear | currentYear */
+  priorYearTax:0,
+  priorYearAGI:0,
+  w2Wages:0,
+  w2Withholding:0,
+  projectedAnnualNetSE:0,
+  useProjection:false
+};
+
+var TAX_PERIODS = [
+  {id:"p1", label:"Period 1", range:"Jan 1 – Mar 31", due:"Apr 15, 2027", months:["jan","feb","mar"]},
+  {id:"p2", label:"Period 2", range:"Apr 1 – May 31", due:"Jun 15, 2027", months:["apr","may"]},
+  {id:"p3", label:"Period 3", range:"Jun 1 – Aug 31", due:"Sep 15, 2027", months:["jun","jul","aug"]},
+  {id:"p4", label:"Period 4", range:"Sep 1 – Dec 31", due:"Jan 15, 2028", months:["sep","oct","nov","dec"]}
+];
+
+var DEFAULT_CATEGORIES = {
+  income:   ["Primary Income (W-2)","Partner's Income (W-2)","Self-Employment Income (net)","Other Income"],
+  fixed:    ["Rent / Mortgage","Renters / Home Insurance","Car Insurance","Car Payment","Phone","Internet","Gym Membership","Subscriptions (Spotify, etc.)"],
+  variable: ["Groceries","Restaurants","Gas","Household Items","Personal Care","Shopping","Amazon","Bars","Travel","Activities","Ubers / Lyfts / Parking","Misc"],
+  debt:     ["Credit Card","Credit Card 2","Student Loans"],
+  savings:  ["Emergency Fund","Vacation Fund","Holiday Fund","Down Payment Fund"],
+  investing:["My 401k","Partner's 401k","My IRA","Partner's IRA","Joint Brokerage"]
+};
+
+var GROUP_META = {
+  income:   {label:"Income",           color:"var(--teal)"},
+  fixed:    {label:"Fixed Expenses",   color:"var(--brick)"},
+  variable: {label:"Variable Expenses",color:"var(--brick)"},
+  debt:     {label:"Debt Payments",    color:"var(--brick)"},
+  savings:  {label:"Cash Savings",     color:"var(--sage)"},
+  investing:{label:"Investing",        color:"var(--gold)"}
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+var STORAGE_KEY = "moneyMap2027_v1";
+
+function uid(){ return Math.random().toString(36).slice(2,10); }
+
+function blankMonthMap(){ var o={}; MONTHS.forEach(function(m){ o[m]=0; }); return o; }
+
+function defaultState(){
+  var s = {
+    version:1,
+    profile:{ name:"", isSelfEmployed:true },
+    categories:{}, // group -> [{id,label,budgetQ:{q1,q2,q3,q4},activeQ:{q1,q2,q3,q4}}]
+    actuals:{},    // group -> { catId -> {jan:0,...} }
+    selfEmployed:{
+      incomeLines:[], // {id,date,client,note,amount}
+      expenseCats:[], // {id,label}
+      expenseActuals:{} // catId -> {jan:0,...}
+    },
+    netWorth:{
+      assetCats:[{id:uid(),label:"Cash / Checking"},{id:uid(),label:"Savings"},{id:uid(),label:"Investments"},{id:uid(),label:"Retirement Accounts"},{id:uid(),label:"Home / Property"}],
+      liabilityCats:[{id:uid(),label:"Credit Cards"},{id:uid(),label:"Student Loans"},{id:uid(),label:"Car Loan"},{id:uid(),label:"Mortgage"}],
+      assets:{}, liabilities:{}
+    },
+    emergencyFund:{
+      targetMonths:3,
+      monthlyEssentialExpenses:0,
+      contributions:[] // {id,date,amount,note}
+    },
+    quarterly:{}, // q1..q4 -> {wins:"",misses:"",focus:""}
+    weekPlanner:[], // 12 x {id,label,goal,action,done}
+    tax: JSON.parse(JSON.stringify(TAX_DEFAULTS)),
+    taxQuarters:{}, // p1..p4 -> {paid:0}
+    subscriptions:[], // {id,name,amount,cadence:"monthly"|"yearly",active:true,note}
+    freelanceRate:{targetIncome:0, annualExpenses:0, taxBufferPct:30, hoursPerWeek:20, weeksPerYear:48},
+    debtPayoff:{strategy:"avalanche", extraMonthly:0, debts:[]}, // debts: {id,name,balance,apr,minPayment}
+    ui:{ activeSection:"welcome", activeMonth:"jan", setupQuarter:"q1" }
+  };
+  Object.keys(DEFAULT_CATEGORIES).forEach(function(group){
+    s.categories[group] = DEFAULT_CATEGORIES[group].map(function(label){ return {id:uid(), label:label, budgetQ:{q1:0,q2:0,q3:0,q4:0}, activeQ:{q1:true,q2:true,q3:true,q4:true}}; });
+    s.actuals[group] = {};
+    s.categories[group].forEach(function(c){ s.actuals[group][c.id] = blankMonthMap(); });
+  });
+  s.selfEmployed.expenseCats = SE_EXPENSE_CATS.map(function(label){ return {id:uid(), label:label}; });
+  s.selfEmployed.expenseCats.forEach(function(c){ s.selfEmployed.expenseActuals[c.id] = blankMonthMap(); });
+  s.netWorth.assetCats.forEach(function(c){ s.netWorth.assets[c.id] = blankMonthMap(); });
+  s.netWorth.liabilityCats.forEach(function(c){ s.netWorth.liabilities[c.id] = blankMonthMap(); });
+  QUARTERS.forEach(function(q){ s.quarterly[q.id] = {wins:"", misses:"", focus:""}; });
+  TAX_PERIODS.forEach(function(p){ s.taxQuarters[p.id] = {paid:0}; });
+  for(var w=1;w<=12;w++){ s.weekPlanner.push({id:uid(), label:"Week "+w, goal:"", action:"", done:false}); }
+  return s;
+}
+
+var state = loadState();
+
+function loadState(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return defaultState();
+    var parsed = JSON.parse(raw);
+    return migrateState(parsed);
+  }catch(e){ return defaultState(); }
+}
+function migrateCategoryShape(parsed){
+  // Older saved/imported data has a single flat `budget` number per category. Upgrade it to
+  // budgetQ (one number per quarter, seeded with the old flat value so nothing changes on
+  // load) and activeQ (all quarters on, matching the old "always on" behavior) in place, so
+  // the array-wholesale-replace in deepMerge below picks up the new shape instead of the old
+  // one. Never touches actuals, so no logged numbers are at risk here.
+  if(!parsed || !parsed.categories) return;
+  Object.keys(parsed.categories).forEach(function(group){
+    var list = parsed.categories[group];
+    if(!Array.isArray(list)) return;
+    list.forEach(function(c){
+      if(!c || typeof c!=="object") return;
+      if(!c.budgetQ || typeof c.budgetQ!=="object"){
+        var flat = Number(c.budget)||0;
+        c.budgetQ = {q1:flat, q2:flat, q3:flat, q4:flat};
+      }
+      if(!c.activeQ || typeof c.activeQ!=="object"){
+        c.activeQ = {q1:true, q2:true, q3:true, q4:true};
+      }
+      delete c.budget;
+    });
+  });
+}
+function migrateState(parsed){
+  migrateCategoryShape(parsed);
+  var fresh = defaultState();
+  function deepMerge(base, incoming){
+    if(Array.isArray(base)) return incoming!==undefined ? incoming : base;
+    if(typeof base === "object" && base!==null){
+      var out = {};
+      var keys = Object.keys(base);
+      // Dictionaries keyed by generated ids (actuals, expenseActuals, assets, liabilities)
+      // get fresh random ids on every defaultState() call, which never match a previously
+      // saved id. Without this, every reload/import would silently drop all stored amounts
+      // for any category whose id doesn't happen to match the newly-generated defaults.
+      // Unioning in incoming's own keys keeps data keyed by the ids that are actually in use.
+      if(incoming && typeof incoming === "object" && !Array.isArray(incoming)){
+        Object.keys(incoming).forEach(function(k){ if(keys.indexOf(k)===-1) keys.push(k); });
+      }
+      keys.forEach(function(k){
+        if(Object.prototype.hasOwnProperty.call(base, k)){
+          out[k] = deepMerge(base[k], incoming ? incoming[k] : undefined);
+        } else {
+          out[k] = incoming[k];
+        }
+      });
+      return out;
+    }
+    return incoming!==undefined ? incoming : base;
+  }
+  try{ return deepMerge(fresh, parsed); }catch(e){ return fresh; }
+}
+
+var saveTimer=null;
+function saveState(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(function(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      flashSaved();
+    }catch(e){ /* storage unavailable - degrade silently */ }
+  }, 250);
+}
+function flashSaved(){
+  var el = document.getElementById("saveNote");
+  if(!el) return;
+  el.textContent = "Saved just now";
+  clearTimeout(flashSaved._t);
+  flashSaved._t = setTimeout(function(){ el.textContent = "Saved on this device"; }, 1800);
+}
+
+/* ============================================================
+   UNDO
+   ============================================================ */
+var undoStack = [];
+var UNDO_MAX = 30;
+function pushUndo(){
+  try{
+    undoStack.push(JSON.stringify(state));
+    if(undoStack.length > UNDO_MAX) undoStack.shift();
+    refreshUndoBtn();
+  }catch(e){ /* snapshot failed - skip, undo just won't have this step */ }
+}
+function doUndo(){
+  if(!undoStack.length) return;
+  try{
+    var prev = JSON.parse(undoStack.pop());
+    state = migrateState(prev);
+    saveState();
+    renderNav();
+    renderMain();
+    refreshUndoBtn();
+    // runs just after saveState's own debounced "Saved just now" flash, so this message wins
+    setTimeout(flashUndone, 300);
+  }catch(e){ /* corrupt snapshot - drop it, leave state as-is */ }
+}
+function refreshUndoBtn(){
+  var b = document.getElementById("btnUndo");
+  if(b) b.disabled = undoStack.length===0;
+}
+function flashUndone(){
+  var el = document.getElementById("saveNote");
+  if(!el) return;
+  el.textContent = "Last change undone";
+  clearTimeout(flashSaved._t);
+  flashSaved._t = setTimeout(function(){ el.textContent = "Saved on this device"; }, 1800);
+}
+
+function fmtMoney(n, opts){
+  opts = opts || {};
+  n = Number(n)||0;
+  var neg = n < 0;
+  var v = Math.abs(n);
+  var s = v.toLocaleString("en-US",{minimumFractionDigits:opts.cents?2:0, maximumFractionDigits:opts.cents?2:0});
+  return (neg?"–$":"$")+s;
+}
+function fmtPct(n){ return (Number(n)||0).toFixed(1)+"%"; }
+function clamp(n,a,b){ return Math.max(a, Math.min(b,n)); }
+function sumMonthMap(map){ return MONTHS.reduce(function(a,m){ return a+(Number(map[m])||0); },0); }
+function sumMonths(map, months){ return months.reduce(function(a,m){ return a+(Number(map[m])||0); },0); }
+
+/* ============================================================
+   ICONS
+   ============================================================ */
+var ICONS = {
+  compass:'<circle cx="10" cy="10" r="7.5"/><path d="M12.6 7.4 11 11l-3.6 1.6L9 9l3.6-1.6Z"/>',
+  gear:'<circle cx="10" cy="10" r="2.6"/><path d="M10 3.2v2M10 14.8v2M16.8 10h-2M5.2 10h-2M15.1 4.9l-1.4 1.4M6.3 13.7l-1.4 1.4M15.1 15.1l-1.4-1.4M6.3 6.3 4.9 4.9"/>',
+  arrowUp:'<path d="M10 15.5v-11M5.5 9l4.5-4.5L14.5 9"/>',
+  receipt:'<path d="M6 3h8v14l-1.5-1-1.5 1-1.5-1-1.5 1-1.5-1L6 17V3Z"/><path d="M8 7h4M8 10h4"/>',
+  cart:'<circle cx="7.5" cy="16" r="1.1"/><circle cx="14" cy="16" r="1.1"/><path d="M3.2 3.5h1.9l1.6 9.2h8.4l1.4-6.7H6"/>',
+  card:'<rect x="3" y="5.5" width="14" height="9.5" rx="1.4"/><path d="M3 8.5h14"/>',
+  piggy:'<path d="M4.5 11c0-3 2.6-5 6-5 2 0 3.6.9 4.4 2.1h1.6l.5 1.7-1.5.6v1.4c0 .7-.5 1.2-1.2 1.2h-.6v1.5H11v-1.5H8.2L7.6 16H5.9l.4-2.1c-1-.7-1.8-1.7-1.8-2.9Z"/><circle cx="7.6" cy="9.6" r="0.6" fill="currentColor" stroke="none"/>',
+  trend:'<path d="M3.5 14.5 8 10l3 2.5 5-6"/><path d="M13 6.2h3.2V9.4"/>',
+  map:'<path d="M4 5.5 8 4l4 1.5 4-1.5v11L12 16.5 8 15l-4 1.5v-11Z"/><path d="M8 4v11M12 5.5v11"/>',
+  flag:'<path d="M6 17V3.5"/><path d="M6 4h8l-2.2 3L14 10H6"/>',
+  shield:'<path d="M10 3.2 16 5.5v4.8c0 4-2.7 6-6 7.5-3.3-1.5-6-3.5-6-7.5V5.5L10 3.2Z"/><path d="M7.3 9.8l1.9 1.9 3.5-3.9"/>',
+  scale:'<path d="M10 3v14M6 17h8M4 6h5M11 6h5"/><path d="M4 6l-2 4h4l-2-4ZM16 6l-2 4h4l-2-4Z"/>',
+  check:'<rect x="3" y="3" width="14" height="14" rx="2.5"/><path d="M6.5 10.2l2.2 2.2 4.8-5"/>',
+  brief:'<rect x="3" y="7" width="14" height="9" rx="1.5"/><path d="M7 7V5.3C7 4.6 7.6 4 8.3 4h3.4c.7 0 1.3.6 1.3 1.3V7"/><path d="M3 11h14"/>',
+  folder:'<path d="M3 5.5h5l1.3 1.6H17v9.4H3V5.5Z"/>',
+  calc:'<rect x="4.5" y="2.5" width="11" height="15" rx="1.5"/><path d="M7 5.5h6M7 9h1M9.5 9h1M12 9h1M7 12h1M9.5 12h1M12 12h1M7 15h1M9.5 15h1M12 15h1"/>',
+  sliders:'<path d="M4 5h12M4 10h12M4 15h12"/><circle cx="8" cy="5" r="1.6" fill="var(--paper-raised)"/><circle cx="14" cy="10" r="1.6" fill="var(--paper-raised)"/><circle cx="7" cy="15" r="1.6" fill="var(--paper-raised)"/>',
+  plus:'<path d="M10 4.5v11M4.5 10h11"/>',
+  info:'<circle cx="10" cy="10" r="7.3"/><path d="M10 9.3v4.4"/><circle cx="10" cy="6.7" r="0.15" fill="currentColor" stroke="currentColor" stroke-width="1.4"/>',
+  x:'<path d="M5 5l10 10M15 5 5 15"/>',
+  repeat:'<path d="M4 8a6 6 0 0 1 10.5-4M16 10a6 6 0 0 1-10.5 4"/><path d="M13 3v3h3M7 17v-3H4"/>',
+  clock:'<circle cx="10" cy="10" r="7.3"/><path d="M10 6v4l3 2"/>',
+  trendDown:'<path d="M3.5 6 8 10.5l3-2.5 5 6"/><path d="M13 14.2h3.2V11"/>'
+};
+function ic(name, cls){
+  return '<svg class="'+(cls||'')+'" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;">'+(ICONS[name]||"")+'</svg>';
+}
+
+/* ============================================================
+   NAV CONFIG
+   ============================================================ */
+var NAV = [
+  {label:"Start Here", items:[
+    {id:"welcome", label:"Welcome", icon:"compass"},
+    {id:"setup", label:"Budget Setup", icon:"gear"}
+  ]},
+  {label:"Monthly Tracker", items:[
+    {id:"group:income", label:"Income", icon:"arrowUp"},
+    {id:"group:fixed", label:"Fixed Expenses", icon:"receipt"},
+    {id:"group:variable", label:"Variable Expenses", icon:"cart"},
+    {id:"group:debt", label:"Debt Payments", icon:"card"},
+    {id:"group:savings", label:"Cash Savings", icon:"piggy"},
+    {id:"group:investing", label:"Investing", icon:"trend"}
+  ]},
+  {label:"Big Picture", items:[
+    {id:"dashboard", label:"Annual Dashboard", icon:"map"},
+    {id:"quarterly", label:"Quarterly Planner", icon:"flag"},
+    {id:"emergency", label:"Emergency Fund", icon:"shield"},
+    {id:"debtpayoff", label:"Debt Payoff Calculator", icon:"trendDown"},
+    {id:"subscriptions", label:"Subscription Audit", icon:"repeat"},
+    {id:"networth", label:"Net Worth Tracker", icon:"scale"},
+    {id:"weekplanner", label:"12-Week Planner", icon:"check"}
+  ]},
+  {label:"Self-Employed", items:[
+    {id:"se-income", label:"Business Income", icon:"brief"},
+    {id:"se-expenses", label:"Business Expenses", icon:"folder"},
+    {id:"freelance-rate", label:"Freelance Rate Calculator", icon:"clock"},
+    {id:"taxes", label:"Estimated Taxes", icon:"calc"}
+  ]},
+  {label:"", items:[
+    {id:"settings", label:"Settings & Backup", icon:"sliders"}
+  ]}
+];
+
+function renderNav(){
+  var mount = document.getElementById("navMount");
+  var html = "";
+  NAV.forEach(function(g){
+    // When someone tells us they're a W-2 employee, the Self-Employed section almost
+    // certainly doesn't apply to them - dim it in the nav so it reads as optional.
+    // It's never hidden or disabled: every page still stays fully available and clickable.
+    var dim = g.label==="Self-Employed" && state.profile.isSelfEmployed===false;
+    html += '<div class="nav-group'+(dim?' dim':'')+'">';
+    if(g.label) html += '<div class="nav-label"'+(dim?' title="Dimmed because you said W-2 employee - still fully available."':'')+'>'+g.label+'</div>';
+    g.items.forEach(function(it){
+      var active = state.ui.activeSection === it.id;
+      html += '<button class="nav-btn" data-nav="'+it.id+'" aria-current="'+active+'">'+ic(it.icon)+'<span>'+it.label+'</span></button>';
+    });
+    html += '</div>';
+  });
+  mount.innerHTML = html;
+  Array.prototype.forEach.call(mount.querySelectorAll("[data-nav]"), function(btn){
+    btn.addEventListener("click", function(){
+      goTo(btn.getAttribute("data-nav"));
+      closeMobileNav();
+    });
+  });
+}
+
+function goTo(sectionId){
+  state.ui.activeSection = sectionId;
+  saveState();
+  renderNav();
+  renderMain();
+  window.scrollTo(0,0);
+}
+
+function closeMobileNav(){
+  document.getElementById("rail").classList.remove("open");
+  document.getElementById("railScrim").style.display="none";
+}
+
+/* ============================================================
+   AGGREGATION HELPERS
+   ============================================================ */
+function groupMonthTotal(group, month){
+  var cats = state.categories[group], acts = state.actuals[group];
+  return cats.reduce(function(sum,c){
+    if(group==="income" && /self-employ/i.test(c.label)) return sum + seIncomeMonthTotal(month);
+    return sum + (Number((acts[c.id]||{})[month])||0);
+  },0);
+}
+function groupAnnualTotal(group){
+  return MONTHS.reduce(function(a,m){ return a+groupMonthTotal(group,m); },0);
+}
+function monthToQuarter(month){
+  var q = QUARTERS.find(function(q){ return q.months.indexOf(month)!==-1; });
+  return q ? q.id : "q1";
+}
+function catIsActiveInQuarter(c, quarterId){
+  return c.activeQ ? c.activeQ[quarterId]!==false : true;
+}
+function catsForQuarter(group, quarterId){
+  return state.categories[group].filter(function(c){ return catIsActiveInQuarter(c, quarterId); });
+}
+function catBudgetForQuarter(c, quarterId){
+  if(!catIsActiveInQuarter(c, quarterId)) return 0;
+  return c.budgetQ ? (Number(c.budgetQ[quarterId])||0) : 0;
+}
+function groupBudgetMonthly(group, quarterId){
+  quarterId = quarterId || monthToQuarter(state.ui.activeMonth);
+  return state.categories[group].reduce(function(a,c){
+    if(group==="income" && /self-employ/i.test(c.label)) return a;
+    return a+catBudgetForQuarter(c, quarterId);
+  },0);
+}
+function seIncomeMonthTotal(month){
+  return state.selfEmployed.incomeLines.reduce(function(sum,l){
+    if(!l.date) return sum;
+    var d = new Date(l.date+"T00:00:00");
+    if(isNaN(d)) return sum;
+    if(MONTHS[d.getMonth()]===month) return sum+(Number(l.amount)||0);
+    return sum;
+  },0);
+}
+function seIncomeAnnualTotal(){
+  return MONTHS.reduce(function(a,m){ return a+seIncomeMonthTotal(m); },0);
+}
+function seExpenseMonthTotal(month){
+  var cats = state.selfEmployed.expenseCats, acts = state.selfEmployed.expenseActuals;
+  return cats.reduce(function(sum,c){ return sum+(Number((acts[c.id]||{})[month])||0); },0);
+}
+function seExpenseAnnualTotal(){ return MONTHS.reduce(function(a,m){ return a+seExpenseMonthTotal(m); },0); }
+function seNetAnnual(){ return seIncomeAnnualTotal() - seExpenseAnnualTotal(); }
+
+function incomeMonthTotal(month){
+  // "Income" group total, but Self-Employment line auto-pulled from SE ledger rather than manual entry
+  var cats = state.categories.income, acts = state.actuals.income;
+  return cats.reduce(function(sum,c){
+    if(/self-employ/i.test(c.label)) return sum + seIncomeMonthTotal(month)/1 - 0*seExpenseMonthTotal(month);
+    return sum + (Number((acts[c.id]||{})[month])||0);
+  },0) ;
+}
+function expensesMonthTotal(month){
+  return groupMonthTotal("fixed",month)+groupMonthTotal("variable",month)+seExpenseMonthTotal(month);
+}
+function monthNet(month){
+  return incomeMonthTotal(month) - expensesMonthTotal(month) - groupMonthTotal("debt",month) - groupMonthTotal("savings",month) - groupMonthTotal("investing",month);
+}
+
+function netWorthAtMonth(month){
+  var a = state.netWorth.assetCats.reduce(function(s,c){ return s+(Number((state.netWorth.assets[c.id]||{})[month])||0); },0);
+  var l = state.netWorth.liabilityCats.reduce(function(s,c){ return s+(Number((state.netWorth.liabilities[c.id]||{})[month])||0); },0);
+  return {assets:a, liabilities:l, net:a-l};
+}
+
+function efSavedTotal(){
+  return state.emergencyFund.contributions.reduce(function(a,c){ return a+(Number(c.amount)||0); },0);
+}
+function efTarget(){
+  return (Number(state.emergencyFund.monthlyEssentialExpenses)||0) * (Number(state.emergencyFund.targetMonths)||0);
+}
+
+/* ============================================================
+   SUBSCRIPTION AUDIT
+   ============================================================ */
+function subscriptionMonthlyEquivalent(s){
+  var amt = Number(s.amount)||0;
+  return s.cadence==="yearly" ? amt/12 : amt;
+}
+function subscriptionsMonthlyTotal(){
+  return state.subscriptions.reduce(function(a,s){
+    return a + ((s.active!==false) ? subscriptionMonthlyEquivalent(s) : 0);
+  },0);
+}
+
+/* ============================================================
+   FREELANCE RATE CALCULATOR
+   ============================================================ */
+function freelanceRateCalc(){
+  var f = state.freelanceRate;
+  var target = Number(f.targetIncome)||0;
+  var expenses = Number(f.annualExpenses)||0;
+  var bufferPct = clamp(Number(f.taxBufferPct)||0, 0, 95);
+  var hours = Number(f.hoursPerWeek)||0;
+  var weeks = Number(f.weeksPerYear)||0;
+  var billableHours = hours*weeks;
+  var grossNeeded = (target+expenses) / (1-(bufferPct/100));
+  var hourlyRate = billableHours>0 ? grossNeeded/billableHours : 0;
+  return {billableHours:billableHours, grossNeeded:grossNeeded, hourlyRate:hourlyRate};
+}
+
+/* ============================================================
+   DEBT PAYOFF CALCULATOR
+   ============================================================ */
+function monthsFromNowLabel(months){
+  if(!months) return "";
+  var d = new Date();
+  d.setMonth(d.getMonth()+months);
+  return d.toLocaleDateString("en-US",{month:"long", year:"numeric"});
+}
+function simulateDebtPayoff(debts, strategy, extraMonthly){
+  var list = (debts||[]).map(function(d){
+    return {id:d.id, balance:Number(d.balance)||0, apr:Number(d.apr)||0, minPayment:Number(d.minPayment)||0};
+  }).filter(function(d){ return d.balance>0.005; });
+  var payoffMonth = {};
+  if(!list.length) return {months:0, totalInterest:0, payoffMonth:payoffMonth, hitCap:false};
+  function sortOrder(arr){
+    var copy = arr.slice();
+    if(strategy==="snowball") copy.sort(function(a,b){ return a.balance-b.balance; });
+    else copy.sort(function(a,b){ return b.apr-a.apr; });
+    return copy;
+  }
+  var totalInterest = 0, months = 0;
+  var extra = Number(extraMonthly)||0;
+  var MAX_MONTHS = 600; // 50-year safety cap, in case minimums never cover accruing interest
+  while(list.some(function(d){ return d.balance>0.005; }) && months<MAX_MONTHS){
+    months++;
+    list.forEach(function(d){
+      if(d.balance>0.005){
+        var interest = d.balance*((d.apr/100)/12);
+        d.balance += interest;
+        totalInterest += interest;
+      }
+    });
+    list.forEach(function(d){
+      if(d.balance>0.005) d.balance -= Math.min(d.minPayment, d.balance);
+    });
+    var ordered = sortOrder(list.filter(function(d){ return d.balance>0.005; }));
+    var remainingExtra = extra;
+    for(var i=0;i<ordered.length && remainingExtra>0.005;i++){
+      var pay = Math.min(remainingExtra, ordered[i].balance);
+      ordered[i].balance -= pay;
+      remainingExtra -= pay;
+    }
+    list.forEach(function(d){
+      if(d.balance<=0.005 && payoffMonth[d.id]===undefined) payoffMonth[d.id] = months;
+    });
+  }
+  return {months:months, totalInterest:totalInterest, payoffMonth:payoffMonth, hitCap: months>=MAX_MONTHS};
+}
+
+/* ============================================================
+   TAX ENGINE
+   ============================================================ */
+function calcBracketTax(taxableIncome, brackets){
+  taxableIncome = Math.max(0, taxableIncome);
+  var tax = 0;
+  for(var i=0;i<brackets.length;i++){
+    var lower = brackets[i][0];
+    var rate = brackets[i][1];
+    var upper = (i+1<brackets.length) ? brackets[i+1][0] : Infinity;
+    if(taxableIncome > lower){
+      tax += (Math.min(taxableIncome, upper) - lower) * rate;
+    } else break;
+  }
+  return tax;
+}
+
+function computeTaxSummary(){
+  var t = state.tax;
+  var netSE = t.useProjection ? (Number(t.projectedAnnualNetSE)||0) : seNetAnnual();
+  netSE = Math.max(0, netSE);
+  var seTaxableBase = netSE * 0.9235;
+  var wageBase = Number(t.seWageBase)||0;
+  var ssPortion = Math.min(seTaxableBase, wageBase) * 0.124;
+  var medicarePortion = seTaxableBase * 0.029;
+  var addlThreshold = (t.addlMedicareThreshold[t.filingStatus]!==undefined) ? t.addlMedicareThreshold[t.filingStatus] : t.addlMedicareThreshold.single;
+  var combinedWageForAddl = (Number(t.w2Wages)||0) + seTaxableBase;
+  var addlMedicare = Math.max(0, combinedWageForAddl - addlThreshold) * 0.009;
+  var seTax = ssPortion + medicarePortion + addlMedicare;
+  var halfSEDeduction = seTax * 0.5;
+
+  var stdDed = Number(t.standardDeduction[t.filingStatus]) || 0;
+  var grossIncome = (Number(t.w2Wages)||0) + netSE;
+  var taxableIncome = Math.max(0, grossIncome - halfSEDeduction - stdDed);
+  var brackets = t.brackets[t.filingStatus] || t.brackets.single;
+  var incomeTax = calcBracketTax(taxableIncome, brackets);
+
+  var totalTax = incomeTax + seTax;
+  var netOfWithholding = Math.max(0, totalTax - (Number(t.w2Withholding)||0));
+
+  var safeHarborPrior = (Number(t.priorYearAGI)||0) > t.safeHarborAgiThreshold ? (Number(t.priorYearTax)||0)*1.10 : (Number(t.priorYearTax)||0);
+  var safeHarborCurrent = totalTax * 0.9;
+  var requiredAnnualPayment = t.method==="priorYear" ? Math.min(safeHarborPrior, netOfWithholding) : Math.min(safeHarborCurrent, netOfWithholding);
+  if(t.method==="priorYear" && (!t.priorYearTax || t.priorYearTax<=0)) requiredAnnualPayment = netOfWithholding;
+
+  return {
+    netSE:netSE, seTaxableBase:seTaxableBase, ssPortion:ssPortion, medicarePortion:medicarePortion,
+    addlMedicare:addlMedicare, seTax:seTax, halfSEDeduction:halfSEDeduction, stdDed:stdDed,
+    taxableIncome:taxableIncome, incomeTax:incomeTax, totalTax:totalTax, netOfWithholding:netOfWithholding,
+    safeHarborPrior:safeHarborPrior, safeHarborCurrent:safeHarborCurrent, requiredAnnualPayment:requiredAnnualPayment
+  };
+}
+
+function taxPaidThrough(periodId){
+  var idx = TAX_PERIODS.findIndex(function(p){ return p.id===periodId; });
+  var total = 0;
+  for(var i=0;i<=idx;i++){ total += Number(state.taxQuarters[TAX_PERIODS[i].id].paid)||0; }
+  return total;
+}
+
+/* ============================================================
+   CHART HELPERS (SVG)
+   ============================================================ */
+function svgLineChart(opts){
+  // opts: {series:[{label,color,values:[12 nums]}], labels:[12], height, width, money:true}
+  var w = opts.width||640, h = opts.height||220, pad = {t:16,r:14,b:26,l:44};
+  var innerW = w-pad.l-pad.r, innerH = h-pad.t-pad.b;
+  var allVals = [];
+  opts.series.forEach(function(s){ allVals = allVals.concat(s.values); });
+  var max = Math.max.apply(null, allVals.concat([0]));
+  var min = Math.min.apply(null, allVals.concat([0]));
+  var flat = (max===min);
+  if(flat){ max = max+1; }
+  var n = opts.labels.length;
+  function x(i){ return pad.l + (n<=1?0:(innerW*i/(n-1))); }
+  function y(v){ return pad.t + innerH - ((v-min)/(max-min))*innerH; }
+  var gridLines = 4, gridHtml = "";
+  for(var g=0; g<=gridLines; g++){
+    var gv = min + (max-min)*g/gridLines;
+    var gy = y(gv);
+    gridHtml += '<line x1="'+pad.l+'" x2="'+(w-pad.r)+'" y1="'+gy+'" y2="'+gy+'" stroke="var(--c-grid)" stroke-width="1"/>';
+    gridHtml += '<text x="'+(pad.l-8)+'" y="'+(gy+3)+'" font-size="9.5" text-anchor="end" fill="var(--c-mute)" font-family="IBM Plex Mono, monospace">'+(flat?"":(opts.money?fmtCompact(gv):Math.round(gv)))+'</text>';
+  }
+  if(flat) gridHtml += '<text x="'+(pad.l-8)+'" y="'+(y(min)+3)+'" font-size="9.5" text-anchor="end" fill="var(--c-mute)" font-family="IBM Plex Mono, monospace">'+(opts.money?fmtCompact(min):Math.round(min))+'</text>';
+  var zeroY = y(0);
+  gridHtml += '<line x1="'+pad.l+'" x2="'+(w-pad.r)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="var(--c-axis)" stroke-width="1.2"/>';
+  var labelHtml = "";
+  opts.labels.forEach(function(lb,i){
+    if(n>12 && i%2!==0) return;
+    labelHtml += '<text x="'+x(i)+'" y="'+(h-8)+'" font-size="9.5" text-anchor="middle" fill="var(--c-mute)">'+lb+'</text>';
+  });
+  var seriesHtml = "";
+  opts.series.forEach(function(s){
+    var pts = s.values.map(function(v,i){ return x(i)+","+y(v); }).join(" ");
+    seriesHtml += '<polyline points="'+pts+'" fill="none" stroke="'+s.color+'" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    s.values.forEach(function(v,i){
+      seriesHtml += '<circle cx="'+x(i)+'" cy="'+y(v)+'" r="2.6" fill="'+s.color+'"><title>'+s.label+", "+opts.labels[i]+": "+(opts.money?fmtMoney(v):v)+'</title></circle>';
+    });
+  });
+  return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" style="max-width:'+w+'px" role="img" aria-label="'+(opts.ariaLabel||"chart")+'">'+gridHtml+seriesHtml+labelHtml+'</svg>';
+}
+
+function svgBarChart(opts){
+  // opts: {groups:[{label, bars:[{label,color,value}]}], height,width,money}
+  var w = opts.width||640, h = opts.height||220, pad={t:16,r:14,b:26,l:44};
+  var innerW=w-pad.l-pad.r, innerH=h-pad.t-pad.b;
+  var allVals=[]; opts.groups.forEach(function(g){ g.bars.forEach(function(b){ allVals.push(b.value); }); });
+  var max = Math.max.apply(null, allVals.concat([0]));
+  var min = Math.min.apply(null, allVals.concat([0]));
+  var flat = (max===min);
+  if(flat) max=max+1;
+  var range = max-min || 1;
+  function y(v){ return pad.t + innerH - ((v-min)/range)*innerH; }
+  var zeroY = y(0);
+  var groupW = innerW/opts.groups.length;
+  var barsPerGroup = opts.groups[0] ? opts.groups[0].bars.length : 1;
+  var barGap = 3, groupPad = 10;
+  var barW = Math.max(4,(groupW - groupPad*2 - barGap*(barsPerGroup-1))/barsPerGroup);
+  var gridHtml="";
+  for(var gl=0; gl<=4; gl++){
+    var gv = min+range*gl/4, gy=y(gv);
+    gridHtml += '<line x1="'+pad.l+'" x2="'+(w-pad.r)+'" y1="'+gy+'" y2="'+gy+'" stroke="var(--c-grid)" stroke-width="1"/>';
+    gridHtml += '<text x="'+(pad.l-8)+'" y="'+(gy+3)+'" font-size="9.5" text-anchor="end" fill="var(--c-mute)" font-family="IBM Plex Mono, monospace">'+(flat?"":(opts.money?fmtCompact(gv):Math.round(gv)))+'</text>';
+  }
+  if(flat) gridHtml += '<text x="'+(pad.l-8)+'" y="'+(zeroY+3)+'" font-size="9.5" text-anchor="end" fill="var(--c-mute)" font-family="IBM Plex Mono, monospace">'+(opts.money?fmtCompact(0):0)+'</text>';
+  gridHtml += '<line x1="'+pad.l+'" x2="'+(w-pad.r)+'" y1="'+zeroY+'" y2="'+zeroY+'" stroke="var(--c-axis)" stroke-width="1.2"/>';
+  var barsHtml="", labelHtml="";
+  opts.groups.forEach(function(gp,gi){
+    var gx0 = pad.l + gi*groupW + groupPad;
+    labelHtml += '<text x="'+(pad.l+gi*groupW+groupW/2)+'" y="'+(h-8)+'" font-size="9.5" text-anchor="middle" fill="var(--c-mute)">'+gp.label+'</text>';
+    gp.bars.forEach(function(b,bi){
+      var bx = gx0 + bi*(barW+barGap);
+      var by = Math.min(y(b.value), zeroY);
+      var bh = Math.abs(y(b.value)-zeroY);
+      barsHtml += '<rect x="'+bx+'" y="'+by+'" width="'+barW+'" height="'+Math.max(bh,0.5)+'" rx="2" fill="'+b.color+'"><title>'+gp.label+", "+b.label+": "+(opts.money?fmtMoney(b.value):b.value)+'</title></rect>';
+    });
+  });
+  return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" style="max-width:'+w+'px" role="img" aria-label="'+(opts.ariaLabel||"chart")+'">'+gridHtml+barsHtml+labelHtml+'</svg>';
+}
+
+function svgDonut(pct, color, size){
+  size = size||120;
+  var r = size/2-10, c = size/2;
+  var circ = 2*Math.PI*r;
+  var offset = circ*(1-clamp(pct,0,1));
+  return '<svg viewBox="0 0 '+size+' '+size+'" width="'+size+'" height="'+size+'">'+
+    '<circle cx="'+c+'" cy="'+c+'" r="'+r+'" fill="none" stroke="var(--c-grid)" stroke-width="11"/>'+
+    '<circle cx="'+c+'" cy="'+c+'" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="11" stroke-linecap="round" stroke-dasharray="'+circ+'" stroke-dashoffset="'+offset+'" transform="rotate(-90 '+c+' '+c+')"/>'+
+    '<text x="'+c+'" y="'+(c+5)+'" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="18" font-weight="600" fill="var(--ink)">'+Math.round(pct*100)+'%</text>'+
+    '</svg>';
+}
+
+function fmtCompact(n){
+  n = Number(n)||0;
+  var neg = n<0; n = Math.abs(n);
+  var s;
+  if(n>=1000000) s = (n/1000000).toFixed(1)+"M";
+  else if(n>=1000) s = (n/1000).toFixed(n>=10000?0:1)+"k";
+  else s = n.toFixed(0);
+  return (neg?"-$":"$")+s;
+}
+
+/* ============================================================
+   SCOPE RESOLVER (for generic matrix editor)
+   ============================================================ */
+function getScope(scope){
+  if(scope.indexOf("group:")===0){
+    var g = scope.slice(6);
+    return {cats:state.categories[g], acts:state.actuals[g], budget:true, group:g};
+  }
+  if(scope==="se-expense") return {cats:state.selfEmployed.expenseCats, acts:state.selfEmployed.expenseActuals, budget:false};
+  if(scope==="nw-asset") return {cats:state.netWorth.assetCats, acts:state.netWorth.assets, budget:false};
+  if(scope==="nw-liability") return {cats:state.netWorth.liabilityCats, acts:state.netWorth.liabilities, budget:false};
+}
+
+function isAutoSeIncomeCat(scope, c){
+  return scope==="group:income" && /self-employ/i.test(c.label);
+}
+
+function renderMatrixTable(scope, opts){
+  opts = opts || {};
+  var sc = getScope(scope);
+  var cats = sc.cats, acts = sc.acts;
+  // The six Monthly Tracker groups (group:income, group:fixed, etc.) have their categories,
+  // names and budget targets managed on the Budget Setup page instead — this table is actuals
+  // entry only, so categories can't also be renamed/added/removed from here. Business Expenses
+  // and Net Worth have no separate setup page, so they keep full category editing right here.
+  var lockStructure = scope.indexOf("group:")===0;
+  var showBudgetCol = sc.budget && !lockStructure;
+  var html = '<div class="table-wrap"><table class="grid" data-matrix="'+scope+'">';
+  html += '<thead><tr><th>Category'+(showBudgetCol?'<div style="font-weight:400;text-transform:none;font-size:10.5px;margin-top:2px;">monthly budget →</div>':'')+'</th>';
+  if(showBudgetCol) html += '<th>Budget</th>';
+  MONTHS.forEach(function(m){ html += '<th>'+MONTH_SHORT[m]+'</th>'; });
+  html += '<th>Total</th><th></th></tr></thead><tbody>';
+  cats.forEach(function(c){
+    var isAuto = isAutoSeIncomeCat(scope, c);
+    html += '<tr'+(isAuto?' style="background:var(--paper-sunken);"':'')+'>';
+    if(isAuto){
+      html += '<td><div class="row-label-static" title="This row is pulled automatically from your Business Income page and can\'t be renamed or edited here.">'+escHtml(c.label)+'</div><div class="hint" style="margin:3px 0 0;font-size:11px;">This income is logged on the Business Income tab, do not enter it here.</div></td>';
+    } else if(lockStructure){
+      html += '<td><div class="row-label-static" title="Renamed, added, or removed on the Budget Setup page.">'+escHtml(c.label)+'</div></td>';
+    } else {
+      html += '<td><input class="row-label-input" data-role="label" data-scope="'+scope+'" data-cat="'+c.id+'" value="'+escAttr(c.label)+'"></td>';
+    }
+    if(showBudgetCol){
+      html += '<td><input class="cell num-input" type="number" step="1" data-role="budget" data-scope="'+scope+'" data-cat="'+c.id+'" value="'+(c.budget||0)+'"></td>';
+    }
+    MONTHS.forEach(function(m){
+      if(isAuto){
+        var av = seIncomeMonthTotal(m);
+        html += '<td><span class="cell num-input" style="display:inline-block;width:74px;color:var(--ink-2);" title="Auto-pulled from Business Income, logged there instead">'+(av?fmtMoney(av):"—")+'</span></td>';
+      } else {
+        var v = (acts[c.id]||{})[m]||0;
+        var inQuarter = lockStructure ? catIsActiveInQuarter(c, monthToQuarter(m)) : true;
+        if(!inQuarter && !v){
+          html += '<td><span class="cell num-input" style="display:inline-block;width:74px;color:var(--ink-mute);" title="Not set up for this quarter - add it back on Budget Setup to log an amount here">—</span></td>';
+        } else {
+          html += '<td><input class="cell num-input" type="number" step="0.01" data-role="cell" data-scope="'+scope+'" data-cat="'+c.id+'" data-month="'+m+'" value="'+(v||"")+'" placeholder="0"'+(inQuarter?'':' style="opacity:.6;" title="Not set up for this quarter, but keeping this already-logged amount visible and editable"')+'></td>';
+        }
+      }
+    });
+    var rowTotal = isAuto ? seIncomeAnnualTotal() : sumMonthMap(acts[c.id]||{});
+    html += '<td class="num" data-role="rowtotal" data-cat="'+c.id+'">'+fmtMoney(rowTotal)+'</td>';
+    html += '<td>'+((isAuto||lockStructure)?'':'<button class="row-del" data-role="del-cat" data-scope="'+scope+'" data-cat="'+c.id+'" aria-label="Remove category" title="Remove">'+ic("x")+'</button>')+'</td>';
+    html += '</tr>';
+  });
+  html += '</tbody><tfoot><tr><td>Total</td>';
+  if(showBudgetCol){
+    var budTotal = cats.reduce(function(a,c){return a+(isAutoSeIncomeCat(scope,c)?0:(Number(c.budget)||0));},0);
+    html += '<td class="num">'+fmtMoney(budTotal)+'</td>';
+  }
+  MONTHS.forEach(function(m){
+    var colTotal = cats.reduce(function(a,c){
+      if(isAutoSeIncomeCat(scope,c)) return a+seIncomeMonthTotal(m);
+      return a+(Number((acts[c.id]||{})[m])||0);
+    },0);
+    html += '<td class="num" data-role="coltotal" data-month="'+m+'">'+fmtMoney(colTotal)+'</td>';
+  });
+  var grand = cats.reduce(function(a,c){
+    if(isAutoSeIncomeCat(scope,c)) return a+seIncomeAnnualTotal();
+    return a+sumMonthMap(acts[c.id]||{});
+  },0);
+  html += '<td class="num" data-role="grandtotal">'+fmtMoney(grand)+'</td><td></td></tr></tfoot></table></div>';
+  if(!lockStructure){
+    html += '<div style="margin-top:10px;"><button class="btn small" data-role="add-cat" data-scope="'+scope+'">'+ic("plus")+' Add category</button></div>';
+  }
+  return html;
+}
+
+function escAttr(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;"); }
+function escHtml(s){ return escAttr(s); }
+
+/* ============================================================
+   PAGE RENDERERS
+   ============================================================ */
+function renderMain(){
+  var mount = document.getElementById("mainMount");
+  var sec = state.ui.activeSection;
+  var html = "";
+  if(sec==="welcome") html = render_welcome();
+  else if(sec==="setup") html = render_setup();
+  else if(sec.indexOf("group:")===0) html = render_group(sec.slice(6));
+  else if(sec==="dashboard") html = render_dashboard();
+  else if(sec==="quarterly") html = render_quarterly();
+  else if(sec==="emergency") html = render_emergency();
+  else if(sec==="networth") html = render_networth();
+  else if(sec==="debtpayoff") html = render_debtPayoff();
+  else if(sec==="subscriptions") html = render_subscriptions();
+  else if(sec==="weekplanner") html = render_weekplanner();
+  else if(sec==="se-income") html = render_seIncome();
+  else if(sec==="se-expenses") html = render_seExpenses();
+  else if(sec==="freelance-rate") html = render_freelanceRate();
+  else if(sec==="taxes") html = render_taxes();
+  else if(sec==="settings") html = render_settings();
+  else html = render_welcome();
+  mount.innerHTML = html;
+  afterRender(sec);
+}
+
+function pageHead(route, title, sub){
+  return '<div class="page-head"><div><div class="route">'+route.map(function(r){return r;}).join(' <span class="dot"></span> ')+'</div><h2>'+title+'</h2>'+(sub?'<div class="sub">'+sub+'</div>':'')+'</div></div>';
+}
+
+function render_welcome(){
+  var totalIncomeYr = MONTHS.reduce(function(a,m){return a+incomeMonthTotal(m);},0);
+  var totalExpYr = groupAnnualTotal("fixed")+groupAnnualTotal("variable")+seExpenseAnnualTotal();
+  var netYr = totalIncomeYr-totalExpYr-groupAnnualTotal("debt")-groupAnnualTotal("savings")-groupAnnualTotal("investing");
+  return pageHead(["Start Here"],"Welcome to your 2027 Budget Template","An updated look and approach to our budget template built for those who are salaried, self-employed or both.")+
+  '<div class="callout">You are such a valued member of the Whealth with Meag community. I\'m so glad you\'re here. Everything below saves automatically as you go. ⬇️</div>'+
+  '<div class="grid-3">'+
+    statCard("Projected income","2027 total, all income streams", fmtMoney(totalIncomeYr))+
+    statCard("Projected spending","Fixed + variable + business expenses", fmtMoney(totalExpYr))+
+    statCard("Projected net","After debt, savings & investing", fmtMoney(netYr), netYr>=0?"good":"bad")+
+  '</div>'+
+  '<div class="card"><h3>How your Budget is laid out</h3><div class="hint">It\'s time to take control of your money, you got this!</div>'+
+    '<div class="grid-2" style="margin-top:6px;">'+
+    howCard("gear","1. Budget Setup","Name your categories and set a monthly budget target for each: income, fixed costs, variable spending, debt, savings and investing.")+
+    howCard("map","2. Monthly Tracker","Log real numbers in six simple spreadsheets, filling out each month as you go.")+
+    howCard("flag","3. Big Picture","Your annual dashboard, quarterly check-ins, emergency fund, net worth and a 12-week action planner.")+
+    howCard("brief","4. Self-Employed","New for 2027: track your 1099 and business income by client, log deductible business expenses, and see your net self-employment income.")+
+    howCard("calc","5. Estimated Taxes","A full quarterly (1040-ES style) estimated tax calculator built for self-employment tax, safe harbor rules and due dates.")+
+    howCard("sliders","6. Settings & Backup","Export a backup file any time, or import one on a new device. Nothing ever leaves your browser unless you export it.")+
+    '</div></div>'+
+  '<div class="callout teal"><strong>New for 2027:</strong> the budget template now works whether you\'re a W-2 employee, fully self-employed or a mix of both, including a quarterly estimated tax calculator and more!</div>';
+}
+function statCard(label,sub,val,tone){
+  return '<div class="stat"><div class="label">'+label+'</div><div class="val">'+val+'</div><div class="delta">'+sub+'</div></div>';
+}
+function howCard(icon,title,body){
+  return '<div style="display:flex;gap:12px;"><div style="flex:0 0 34px;width:34px;height:34px;border-radius:9px;background:var(--gold-soft);color:var(--gold-ink);display:flex;align-items:center;justify-content:center;">'+ic(icon)+'</div><div><div style="font-weight:600;font-size:13.5px;margin-bottom:2px;">'+title+'</div><div style="font-size:12.5px;color:var(--ink-2);">'+body+'</div></div></div>';
+}
+
+function quarterLabel(qid){
+  var q = QUARTERS.find(function(x){ return x.id===qid; });
+  return q ? q.label : qid;
+}
+
+function render_setup(){
+  var qid = state.ui.setupQuarter || "q1";
+  var qLabel = quarterLabel(qid);
+  var html = pageHead(["Start Here"],"Budget Setup","Set up your categories and monthly budget. Each tracker page will pull from here, so you don't have to worry about filling it out anywhere else!");
+  html += '<div class="card"><h3>Your situation</h3><div class="hint">If you\'re a W-2 employee, we\'ll dim the Self-Employed section in the sidebar since you likely won\'t need it. Every page will still stay available to you!</div>';
+  html += '<div class="pill-row">'+
+    '<button class="pill" data-role="profile-selfemployed" data-val="false" aria-pressed="'+(!state.profile.isSelfEmployed)+'">W-2 employee</button>'+
+    '<button class="pill" data-role="profile-selfemployed" data-val="mix" aria-pressed="'+(state.profile.isSelfEmployed==="mix")+'">Mix of both</button>'+
+    '<button class="pill" data-role="profile-selfemployed" data-val="true" aria-pressed="'+(state.profile.isSelfEmployed===true)+'">Fully self-employed</button>'+
+    '</div></div>';
+
+  html += '<div class="card"><h3>Which quarter are you setting up?</h3><div class="hint">Categories and budgets can be different every quarter. Add a category just for one quarter, or turn one off when you don\'t need it - nothing is ever deleted, so any numbers you\'ve already logged stay safe, and you can turn a category back on later.</div>';
+  html += '<div class="pill-row">'+QUARTERS.map(function(q){
+    return '<button class="pill" data-role="setup-quarter" data-quarter="'+q.id+'" aria-pressed="'+(qid===q.id)+'">'+q.label+'</button>';
+  }).join('')+'</div></div>';
+
+  Object.keys(DEFAULT_CATEGORIES).forEach(function(group){
+    var meta = GROUP_META[group];
+    var activeCats = catsForQuarter(group, qid);
+    var parkedCats = state.categories[group].filter(function(c){ return !catIsActiveInQuarter(c, qid); });
+    html += '<div class="card"><div class="card-head"><h3 style="color:'+meta.color+'">'+meta.label+'</h3><span class="num" style="color:var(--ink-2);font-size:12.5px;">'+qLabel+' budget total: '+fmtMoney(groupBudgetMonthly(group, qid))+'</span></div>';
+    html += '<div class="hint">Rename any category and set your '+qLabel+' budget.</div>';
+    html += '<div class="table-wrap"><table class="grid"><thead><tr><th>Category</th><th>'+qLabel+' budget</th><th></th></tr></thead><tbody>';
+    if(!activeCats.length){
+      html += '<tr><td colspan="3" style="color:var(--ink-mute);font-style:italic;">No categories in '+qLabel+' yet - add one below, or add one back from the list underneath.</td></tr>';
+    }
+    activeCats.forEach(function(c){
+      html += '<tr><td><input class="row-label-input" data-role="label" data-scope="group:'+group+'" data-cat="'+c.id+'" value="'+escAttr(c.label)+'"></td>'+
+        '<td><input class="cell num-input" type="number" step="1" data-role="budget" data-scope="group:'+group+'" data-cat="'+c.id+'" data-quarter="'+qid+'" value="'+catBudgetForQuarter(c,qid)+'"></td>'+
+        '<td><button class="row-del" data-role="deactivate-cat-quarter" data-scope="group:'+group+'" data-cat="'+c.id+'" data-quarter="'+qid+'" title="Remove from '+qLabel+' only - stays safe in any other quarter it\'s active in">'+ic("x")+'</button></td></tr>';
+    });
+    html += '</tbody></table></div><div style="margin-top:10px;"><button class="btn small" data-role="add-cat" data-scope="group:'+group+'" data-quarter="'+qid+'">'+ic("plus")+' Add category</button></div>';
+    if(parkedCats.length){
+      html += '<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line);"><div class="hint" style="margin-bottom:8px;">Not used in '+qLabel+':</div><div class="pill-row">'+
+        parkedCats.map(function(c){
+          return '<button class="pill" data-role="activate-cat-quarter" data-scope="group:'+group+'" data-cat="'+c.id+'" data-quarter="'+qid+'" title="Add back to '+qLabel+'">+ '+escHtml(c.label)+'</button>';
+        }).join('')+'</div></div>';
+    }
+    html += '</div>';
+  });
+  return html;
+}
+
+var GROUP_TIPS = {
+  income: "Note: don't log any business income here. Log it on the Business Income page instead, and it's automatically pulled in and combined into your \"Self-Employment Income\" row and total below.",
+  fixed: "The bills that stay about the same every month.",
+  variable: "Your expenses that change month to month.",
+  debt: "Your minimum payments plus any extra money you put toward payoff.",
+  savings: "Cash you're setting aside, separate from investing.",
+  investing: "Retirement and brokerage contributions."
+};
+
+function render_group(group){
+  var meta = GROUP_META[group];
+  var monthSel = state.ui.activeMonth;
+  var qid = monthToQuarter(monthSel);
+  var budgetTotal = groupBudgetMonthly(group, qid);
+  var actualTotal = groupMonthTotal(group, monthSel);
+  var diff = budgetTotal-actualTotal;
+  var html = pageHead(["Monthly Tracker"], meta.label, GROUP_TIPS[group]||"");
+  html += '<div class="card"><div class="card-head"><h3>'+MONTH_LABEL[monthSel]+' snapshot</h3></div>';
+  html += monthPicker();
+  html += '<div class="grid-3" style="margin-top:14px;">'+
+    statCard("Budgeted", quarterLabel(qid)+" budget, for "+MONTH_SHORT[monthSel], fmtMoney(budgetTotal))+
+    statCard("Actual", "logged for "+MONTH_SHORT[monthSel], fmtMoney(actualTotal))+
+    statCard(diff>=0?"Under budget":"Over budget","difference", fmtMoney(Math.abs(diff)), diff>=0?"good":"bad")+
+    '</div></div>';
+  html += '<div class="card"><h3>Full year</h3><div class="hint">Every category you\'ve set up for every month. The totals update when you click away from a field. A blank, grayed out month means that category isn\'t set up for that quarter yet. You can add it back on Budget Setup tab to log an amount there.</div>'+renderMatrixTable("group:"+group)+'</div>';
+  return html;
+}
+
+function monthPicker(){
+  var html = '<div class="pill-row">';
+  MONTHS.forEach(function(m){
+    html += '<button class="pill" data-role="set-month" data-month="'+m+'" aria-pressed="'+(state.ui.activeMonth===m)+'">'+MONTH_SHORT[m]+'</button>';
+  });
+  return html+'</div>';
+}
+
+function render_dashboard(){
+  var incomeVals = MONTHS.map(incomeMonthTotal);
+  var expenseVals = MONTHS.map(function(m){ return expensesMonthTotal(m)+groupMonthTotal("debt",m)+groupMonthTotal("savings",m)+groupMonthTotal("investing",m); });
+  var totalIncome = incomeVals.reduce(function(a,b){return a+b;},0);
+  var totalOut = expenseVals.reduce(function(a,b){return a+b;},0);
+  var netAnnual = totalIncome-totalOut;
+  var savingsRate = totalIncome>0 ? ((groupAnnualTotal("savings")+groupAnnualTotal("investing"))/totalIncome*100) : 0;
+
+  var breakdownGroups = [
+    {key:"fixed", label:"Fixed", color:"var(--c-blue)", total:groupAnnualTotal("fixed")},
+    {key:"variable", label:"Variable", color:"var(--c-yellow)", total:groupAnnualTotal("variable")},
+    {key:"debt", label:"Debt", color:"var(--c-red)", total:groupAnnualTotal("debt")},
+    {key:"savings", label:"Savings", color:"var(--c-aqua)", total:groupAnnualTotal("savings")},
+    {key:"investing", label:"Investing", color:"var(--c-violet)", total:groupAnnualTotal("investing")},
+    {key:"business", label:"Business exp.", color:"var(--c-magenta)", total:seExpenseAnnualTotal()}
+  ];
+  var maxBreak = Math.max.apply(null, breakdownGroups.map(function(g){return g.total;}).concat([1]));
+
+  var html = pageHead(["Big Picture"],"Annual Dashboard","Your whole 2027 year, at a glance.");
+  html += '<div class="grid-4">'+
+    statCard("Total income","projected, all sources", fmtMoney(totalIncome))+
+    statCard("Total outflow","expenses + debt + savings + investing", fmtMoney(totalOut))+
+    statCard(netAnnual>=0?"Net surplus":"Net shortfall","for the year", fmtMoney(Math.abs(netAnnual)), netAnnual>=0?"good":"bad")+
+    statCard("Savings rate","savings + investing ÷ income", fmtPct(savingsRate))+
+  '</div>';
+
+  html += '<div class="card"><h3>Income vs. outflow, month by month</h3>'+
+    svgBarChart({ariaLabel:"Income versus outflow by month", money:true, groups: MONTHS.map(function(m,i){ return {label:MONTH_SHORT[m], bars:[
+      {label:"Income", color:"var(--c-blue)", value:incomeVals[i]},
+      {label:"Outflow", color:"var(--c-red)", value:expenseVals[i]}
+    ]};})})+
+    '<div class="legend"><span><span class="sw" style="background:var(--c-blue)"></span>Income</span><span><span class="sw" style="background:var(--c-red)"></span>Outflow (expenses + debt + savings + investing)</span></div>'+
+  '</div>';
+
+  html += '<div class="grid-2">';
+  html += '<div class="card"><h3>Where it goes</h3><div class="hint">Annual totals by category group.</div>';
+  breakdownGroups.forEach(function(g){
+    var pct = g.total/maxBreak;
+    html += '<div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px;"><span>'+g.label+'</span><span class="num">'+fmtMoney(g.total)+'</span></div>'+
+      '<div style="height:8px;border-radius:5px;background:var(--paper-sunken);overflow:hidden;"><div style="height:100%;width:'+(pct*100)+'%;background:'+g.color+';border-radius:5px;"></div></div></div>';
+  });
+  html += '</div>';
+
+  var nw27 = MONTHS.map(netWorthAtMonth);
+  html += '<div class="card"><h3>Net worth trend</h3><div class="hint">From your Net Worth Tracker.</div>'+
+    svgLineChart({ariaLabel:"Net worth trend", money:true, labels:MONTHS.map(function(m){return MONTH_SHORT[m];}), series:[
+      {label:"Net worth", color:"var(--c-blue)", values:nw27.map(function(x){return x.net;})}
+    ]})+
+  '</div>';
+  html += '</div>';
+
+  html += '<div class="card"><h3>Quarter snapshot</h3><div class="table-wrap"><table class="grid"><thead><tr><th>Quarter</th><th>Income</th><th>Expenses</th><th>Debt</th><th>Savings</th><th>Investing</th><th>Net</th></tr></thead><tbody>';
+  QUARTERS.forEach(function(q){
+    var qi = sumMonths(monthsToMap(incomeVals), q.months);
+    var qe = q.months.reduce(function(a,m){return a+expensesMonthTotal(m);},0);
+    var qd = q.months.reduce(function(a,m){return a+groupMonthTotal("debt",m);},0);
+    var qs = q.months.reduce(function(a,m){return a+groupMonthTotal("savings",m);},0);
+    var qv = q.months.reduce(function(a,m){return a+groupMonthTotal("investing",m);},0);
+    var qn = qi-qe-qd-qs-qv;
+    html += '<tr><td>'+q.label+' <span style="color:var(--ink-mute);font-weight:400;">('+q.months.map(function(m){return MONTH_SHORT[m];}).join('–')+')</span></td>'+
+      '<td class="num">'+fmtMoney(qi)+'</td><td class="num">'+fmtMoney(qe)+'</td><td class="num">'+fmtMoney(qd)+'</td><td class="num">'+fmtMoney(qs)+'</td><td class="num">'+fmtMoney(qv)+'</td>'+
+      '<td class="num" style="font-weight:700;">'+fmtMoney(qn)+'</td></tr>';
+  });
+  html += '</tbody></table></div></div>';
+  return html;
+}
+function monthsToMap(valsArr){ var o={}; MONTHS.forEach(function(m,i){o[m]=valsArr[i];}); return o; }
+
+function render_quarterly(){
+  var html = pageHead(["Big Picture"],"Quarterly Planner","Every 90 days take a step back and reflect on what worked, what didn't work and what you want to adjust.");
+  QUARTERS.forEach(function(q){
+    var qi = q.months.reduce(function(a,m){return a+incomeMonthTotal(m);},0);
+    var qe = q.months.reduce(function(a,m){return a+expensesMonthTotal(m);},0);
+    var qs = q.months.reduce(function(a,m){return a+groupMonthTotal("savings",m)+groupMonthTotal("investing",m);},0);
+    var qd = state.quarterly[q.id];
+    html += '<div class="card"><div class="card-head"><h3>'+q.label+': '+q.months.map(function(m){return MONTH_LABEL[m];}).join(", ")+'</h3></div>'+
+      '<div class="grid-3" style="margin-bottom:14px;">'+
+        statCard("Income", "logged this quarter", fmtMoney(qi))+
+        statCard("Expenses", "logged this quarter", fmtMoney(qe))+
+        statCard("Saved + invested", "logged this quarter", fmtMoney(qs))+
+      '</div>'+
+      '<div class="field-row">'+
+        qField(q.id,"wins","What worked this quarter?", qd.wins)+
+        qField(q.id,"misses","What didn't?", qd.misses)+
+        qField(q.id,"focus","One focus for next quarter", qd.focus)+
+      '</div></div>';
+  });
+  return html;
+}
+function qField(q,field,label,val){
+  return '<div class="field"><label>'+label+'</label><textarea rows="3" data-role="quarterly-field" data-q="'+q+'" data-field="'+field+'" style="resize:vertical;">'+escHtml(val)+'</textarea></div>';
+}
+
+function render_emergency(){
+  var saved = efSavedTotal(), target = efTarget();
+  var pct = target>0 ? saved/target : 0;
+  var html = pageHead(["Big Picture"],"Emergency Fund Tracker","3-6 months of expenses saved in a <a href=\"https://secure.money.com/pr/o8ffed3e3fb9\" target=\"_blank\" rel=\"noopener\">high yield savings account</a>.");
+  html += '<div class="card"><div class="grid-2">'+
+    '<div>'+
+      '<div class="field-row"><div class="field"><label>Target months of coverage</label><input class="cell num-input" style="width:90px;" type="number" step="1" min="1" data-role="ef-field" data-field="targetMonths" value="'+state.emergencyFund.targetMonths+'"></div>'+
+      '<div class="field"><label>Monthly essential expenses</label><input class="cell num-input" style="width:130px;" type="number" step="1" data-role="ef-field" data-field="monthlyEssentialExpenses" value="'+state.emergencyFund.monthlyEssentialExpenses+'"></div></div>'+
+      '<div class="grid-2" style="margin-top:12px;">'+statCard("Target","months × essentials", fmtMoney(target))+statCard("Saved so far","from contributions log", fmtMoney(saved))+'</div>'+
+    '</div>'+
+    '<div style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">'+svgDonut(pct,"var(--sage)",130)+'<div style="font-size:12px;color:var(--ink-2);">funded</div></div>'+
+  '</div></div>';
+  html += '<div class="card"><h3>Contributions log</h3><div class="hint">Log each deposit as you make it.</div>'+
+    '<div class="table-wrap"><table class="grid" style="table-layout:fixed;"><colgroup><col style="width:150px"><col><col style="width:120px"><col style="width:40px"></colgroup><thead><tr><th>Date</th><th>Note</th><th>Amount</th><th></th></tr></thead><tbody>';
+  state.emergencyFund.contributions.forEach(function(c){
+    html += '<tr><td><input type="date" class="cell standalone" style="width:130px;text-align:left;" data-role="ef-c-field" data-field="date" data-id="'+c.id+'" value="'+(c.date||"")+'"></td>'+
+      '<td><input class="row-label-input" data-role="ef-c-field" data-field="note" data-id="'+c.id+'" value="'+escAttr(c.note||"")+'" placeholder="e.g. tax refund"></td>'+
+      '<td><input class="cell num-input standalone" style="width:90px;" type="number" step="0.01" data-role="ef-c-field" data-field="amount" data-id="'+c.id+'" value="'+(c.amount||"")+'"></td>'+
+      '<td><button class="row-del" data-role="ef-c-del" data-id="'+c.id+'">'+ic("x")+'</button></td></tr>';
+  });
+  if(!state.emergencyFund.contributions.length) html += '<tr><td colspan="4" class="empty-state">No contributions logged yet.</td></tr>';
+  html += '</tbody></table></div><div style="margin-top:10px;"><button class="btn small" data-role="ef-c-add">'+ic("plus")+' Add contribution</button></div></div>';
+  return html;
+}
+
+function render_networth(){
+  var html = pageHead(["Big Picture"],"Net Worth Tracker","What you own minus what you owe // this is the one number that matters most over time.");
+  var nowMonth = state.ui.activeMonth;
+  var snap = netWorthAtMonth(nowMonth);
+  html += '<div class="card">'+monthPicker()+'<div class="grid-3" style="margin-top:14px;">'+
+    statCard("Assets", MONTH_LABEL[nowMonth], fmtMoney(snap.assets))+
+    statCard("Liabilities", MONTH_LABEL[nowMonth], fmtMoney(snap.liabilities))+
+    statCard("Net worth", MONTH_LABEL[nowMonth], fmtMoney(snap.net), snap.net>=0?"good":"bad")+
+  '</div></div>';
+  html += '<div class="card"><h3>Trend</h3>'+svgLineChart({ariaLabel:"Net worth trend", money:true, labels:MONTHS.map(function(m){return MONTH_SHORT[m];}), series:[
+    {label:"Assets", color:"var(--c-blue)", values:MONTHS.map(function(m){return netWorthAtMonth(m).assets;})},
+    {label:"Liabilities", color:"var(--c-red)", values:MONTHS.map(function(m){return netWorthAtMonth(m).liabilities;})}
+  ]})+'<div class="legend"><span><span class="sw" style="background:var(--c-blue)"></span>Assets</span><span><span class="sw" style="background:var(--c-red)"></span>Liabilities</span></div></div>';
+  html += '<div class="card"><h3>Assets</h3>'+renderMatrixTable("nw-asset")+'</div>';
+  html += '<div class="card"><h3>Liabilities</h3>'+renderMatrixTable("nw-liability")+'</div>';
+  return html;
+}
+
+function render_weekplanner(){
+  var html = pageHead(["Big Picture"],"12-Week Planner","Make a change, stay accountable, and go get after it! You got this 💪");
+  html += '<div class="card"><div class="table-wrap"><table class="grid" style="table-layout:fixed;"><colgroup><col style="width:60px"><col><col><col style="width:70px"></colgroup><thead><tr><th>Week</th><th>This week\'s goal</th><th>Action step</th><th>Done</th></tr></thead><tbody>';
+  state.weekPlanner.forEach(function(w,i){
+    html += '<tr><td style="font-weight:600;">'+(i+1)+'</td>'+
+      '<td><input class="row-label-input" data-role="week-field" data-field="goal" data-id="'+w.id+'" value="'+escAttr(w.goal)+'" placeholder="e.g. Build the emergency fund"></td>'+
+      '<td><input class="row-label-input" data-role="week-field" data-field="action" data-id="'+w.id+'" value="'+escAttr(w.action)+'" placeholder="e.g. Automate $75/week transfer"></td>'+
+      '<td style="text-align:center;"><input type="checkbox" data-role="week-field" data-field="done" data-id="'+w.id+'" '+(w.done?"checked":"")+' style="width:17px;height:17px;"></td></tr>';
+  });
+  html += '</tbody></table></div></div>';
+  return html;
+}
+
+function render_subscriptions(){
+  var monthlyTotal = subscriptionsMonthlyTotal();
+  var activeCount = state.subscriptions.filter(function(s){ return s.active!==false; }).length;
+  var html = pageHead(["Big Picture"],"Subscription Audit","Every recurring charge in one place, so it's easy to spot what's piling up - and what's worth canceling.");
+  html += '<div class="grid-3">'+
+    statCard("Monthly total","from active subscriptions", fmtMoney(monthlyTotal))+
+    statCard("Annual total","what this costs you a year", fmtMoney(monthlyTotal*12))+
+    statCard("Active subscriptions", activeCount+" tracked", String(activeCount))+
+  '</div>';
+  html += '<div class="card"><h3>Your subscriptions</h3><div class="hint">Add every recurring charge - streaming, software, memberships, anything that bills on its own. Uncheck "Still using it?" for one you\'ve canceled or want to cut, without losing the record.</div>';
+  html += '<div class="table-wrap"><table class="grid" style="table-layout:fixed;"><colgroup><col><col style="width:95px"><col style="width:90px"><col style="width:125px"><col style="width:115px"><col style="width:40px"></colgroup><thead><tr><th>Name</th><th>Amount</th><th>Billing</th><th>Monthly cost</th><th>Still using it?</th><th></th></tr></thead><tbody>';
+  state.subscriptions.forEach(function(s){
+    var me = subscriptionMonthlyEquivalent(s);
+    var active = s.active!==false;
+    html += '<tr'+(active?'':' style="opacity:.55;"')+'>'+
+      '<td><input class="row-label-input" data-role="sub-field" data-field="name" data-id="'+s.id+'" value="'+escAttr(s.name)+'" placeholder="e.g. Spotify"></td>'+
+      '<td><input class="cell num-input standalone" type="number" step="0.01" data-role="sub-field" data-field="amount" data-id="'+s.id+'" value="'+(s.amount||"")+'"></td>'+
+      '<td><select class="cell standalone" style="width:100%;text-align:left;" data-role="sub-field" data-field="cadence" data-id="'+s.id+'"><option value="monthly"'+(s.cadence!=="yearly"?" selected":"")+'>Monthly</option><option value="yearly"'+(s.cadence==="yearly"?" selected":"")+'>Yearly</option></select></td>'+
+      '<td class="num">'+fmtMoney(me)+'</td>'+
+      '<td style="text-align:center;"><input type="checkbox" data-role="sub-field" data-field="active" data-id="'+s.id+'" '+(active?"checked":"")+' style="width:17px;height:17px;"></td>'+
+      '<td><button class="row-del" data-role="sub-del" data-id="'+s.id+'">'+ic("x")+'</button></td></tr>';
+  });
+  if(!state.subscriptions.length) html += '<tr><td colspan="6" class="empty-state">No subscriptions logged yet. Add your first one below.</td></tr>';
+  html += '</tbody></table></div><div style="margin-top:10px;"><button class="btn small" data-role="sub-add">'+ic("plus")+' Add subscription</button></div></div>';
+  return html;
+}
+
+function render_freelanceRate(){
+  var r = state.freelanceRate;
+  var calc = freelanceRateCalc();
+  var loggedExpenses = seExpenseAnnualTotal();
+  var html = pageHead(["Self-Employed"],"Freelance Rate Calculator","Figure out what to charge based on the income you actually want to take home.");
+  html += '<div class="card"><div class="grid-2">'+
+    field_num("freelance-field","targetIncome","Target annual take-home income", r.targetIncome)+
+    field_num("freelance-field","annualExpenses","Annual business expenses", r.annualExpenses)+
+  '</div>';
+  html += '<div class="hint" style="margin:-4px 0 14px;">Logged business expenses this year on the Business Expenses page: '+fmtMoney(loggedExpenses)+'. Feel free to use that number above.</div>';
+  html += '<div class="grid-3">'+
+    field_num("freelance-field","taxBufferPct","Tax buffer (%)", r.taxBufferPct)+
+    field_num("freelance-field","hoursPerWeek","Billable hours per week", r.hoursPerWeek)+
+    field_num("freelance-field","weeksPerYear","Weeks worked per year", r.weeksPerYear)+
+  '</div></div>';
+  html += '<div class="grid-3">'+
+    statCard("Billable hours","per year", Math.round(calc.billableHours).toLocaleString("en-US"))+
+    statCard("Gross revenue needed","to hit your target", fmtMoney(calc.grossNeeded))+
+    statCard("Suggested rate","charge at least this", fmtMoney(calc.hourlyRate,{cents:true})+"/hr")+
+  '</div>';
+  html += '<div class="callout teal">A rule-of-thumb estimate: it sets aside your tax buffer as a flat percent of revenue, then covers your expenses and target income on top of that. For exact numbers, check the Estimated Taxes page.</div>';
+  return html;
+}
+
+function render_debtPayoff(){
+  var dp = state.debtPayoff;
+  var result = simulateDebtPayoff(dp.debts, dp.strategy, dp.extraMonthly);
+  var totalBalance = dp.debts.reduce(function(a,d){ return a+(Number(d.balance)||0); },0);
+  var monthsLabel = !result.months ? "No debts logged" : (result.hitCap ? "50+ years" : (result.months+" month"+(result.months===1?"":"s")));
+  var dateLabel = !result.months ? "add a debt below" : (result.hitCap ? "minimums may not be covering interest" : ("around "+monthsFromNowLabel(result.months)));
+  var html = pageHead(["Big Picture"],"Debt Payoff Calculator","See about when you'll be debt-free, and how much interest you'll pay getting there.");
+  html += '<div class="card"><h3>Strategy</h3><div class="hint">Avalanche pays off the highest interest rate first (saves the most money overall). Snowball pays off the smallest balance first (faster wins to stay motivated).</div>';
+  html += '<div class="pill-row">'+
+    '<button class="pill" data-role="debtpayoff-strategy" data-val="avalanche" aria-pressed="'+(dp.strategy!=="snowball")+'">Avalanche - save the most</button>'+
+    '<button class="pill" data-role="debtpayoff-strategy" data-val="snowball" aria-pressed="'+(dp.strategy==="snowball")+'">Snowball - quick wins</button>'+
+  '</div>';
+  html += '<div class="field" style="max-width:240px;margin-top:14px;"><label>Extra toward debt each month</label><input class="cell num-input" style="width:100%;text-align:left;" type="number" step="1" data-role="debtpayoff-field" data-field="extraMonthly" value="'+(dp.extraMonthly||0)+'"></div></div>';
+  html += '<div class="grid-3">'+
+    statCard("Debt-free in", dateLabel, monthsLabel)+
+    statCard("Total interest","paid at this pace", fmtMoney(result.totalInterest))+
+    statCard("Total balance", dp.debts.length+" debt"+(dp.debts.length===1?"":"s")+" tracked", fmtMoney(totalBalance))+
+  '</div>';
+  html += '<div class="card"><h3>Your debts</h3><div class="hint">Add every balance you\'re paying down - credit cards, student loans, car loans, anything with interest.</div>';
+  html += '<div class="table-wrap"><table class="grid" style="table-layout:fixed;"><colgroup><col><col style="width:110px"><col style="width:80px"><col style="width:120px"><col style="width:130px"><col style="width:40px"></colgroup><thead><tr><th>Name</th><th>Balance</th><th>APR</th><th>Min payment</th><th>Payoff</th><th></th></tr></thead><tbody>';
+  dp.debts.forEach(function(d){
+    var pm = result.payoffMonth[d.id];
+    html += '<tr>'+
+      '<td><input class="row-label-input" data-role="debt-field" data-field="name" data-id="'+d.id+'" value="'+escAttr(d.name)+'" placeholder="e.g. Chase Credit Card"></td>'+
+      '<td><input class="cell num-input standalone" type="number" step="0.01" data-role="debt-field" data-field="balance" data-id="'+d.id+'" value="'+(d.balance||"")+'"></td>'+
+      '<td><input class="cell num-input standalone" type="number" step="0.1" data-role="debt-field" data-field="apr" data-id="'+d.id+'" value="'+(d.apr||"")+'"></td>'+
+      '<td><input class="cell num-input standalone" type="number" step="1" data-role="debt-field" data-field="minPayment" data-id="'+d.id+'" value="'+(d.minPayment||"")+'"></td>'+
+      '<td>'+(pm!==undefined ? '<span class="badge good">'+ic("check")+' Month '+pm+'</span>' : '<span class="badge warn">Active</span>')+'</td>'+
+      '<td><button class="row-del" data-role="debt-del" data-id="'+d.id+'">'+ic("x")+'</button></td></tr>';
+  });
+  if(!dp.debts.length) html += '<tr><td colspan="6" class="empty-state">No debts logged yet. Add your first one below.</td></tr>';
+  html += '</tbody></table></div><div style="margin-top:10px;"><button class="btn small" data-role="debt-add">'+ic("plus")+' Add debt</button></div></div>';
+  return html;
+}
+
+function render_seIncome(){
+  var lines = state.selfEmployed.incomeLines;
+  var annual = seIncomeAnnualTotal();
+  var html = pageHead(["Self-Employed"],"Business Income","Log every business income transaction as it lands, by client, by project, whatever makes sense to you. It rolls automatically into your Income tracker tab and your tax calculator.");
+  html += '<div class="grid-3">'+statCard("Logged this year","2027 total", fmtMoney(annual))+
+    statCard("Average per entry", lines.length+" entries logged", fmtMoney(lines.length?annual/lines.length:0))+
+    statCard("This month", MONTH_LABEL[state.ui.activeMonth], fmtMoney(seIncomeMonthTotal(state.ui.activeMonth)))+'</div>';
+  html += '<div class="card"><h3>Income by month</h3>'+svgBarChart({ariaLabel:"Self-employment income by month", money:true, groups:MONTHS.map(function(m){return {label:MONTH_SHORT[m], bars:[{label:"SE income", color:"var(--c-blue)", value:seIncomeMonthTotal(m)}]};})})+'</div>';
+  html += '<div class="card"><div class="card-head"><h3>Income ledger</h3><button class="btn small primary" data-role="se-income-add">'+ic("plus")+' Add payment</button></div>';
+  html += '<div class="table-wrap"><table class="grid" style="table-layout:fixed;"><colgroup><col style="width:150px"><col style="width:190px"><col><col style="width:120px"><col style="width:40px"></colgroup><thead><tr><th>Date</th><th>Client / source</th><th>Note</th><th>Amount</th><th></th></tr></thead><tbody>';
+  lines.slice().sort(function(a,b){return (a.date||"").localeCompare(b.date||"");}).forEach(function(l){
+    html += '<tr><td><input type="date" class="cell standalone" style="width:130px;text-align:left;" data-role="se-income-field" data-field="date" data-id="'+l.id+'" value="'+(l.date||"")+'"></td>'+
+      '<td><input class="row-label-input" data-role="se-income-field" data-field="client" data-id="'+l.id+'" value="'+escAttr(l.client||"")+'" placeholder="Client name"></td>'+
+      '<td><input class="row-label-input" data-role="se-income-field" data-field="note" data-id="'+l.id+'" value="'+escAttr(l.note||"")+'" placeholder="Project / invoice #"></td>'+
+      '<td><input class="cell num-input standalone" style="width:90px;" type="number" step="0.01" data-role="se-income-field" data-field="amount" data-id="'+l.id+'" value="'+(l.amount||"")+'"></td>'+
+      '<td><button class="row-del" data-role="se-income-del" data-id="'+l.id+'">'+ic("x")+'</button></td></tr>';
+  });
+  if(!lines.length) html += '<tr><td colspan="5" class="empty-state">No income logged yet. Click “Add payment” to start your ledger.</td></tr>';
+  html += '</tbody></table></div></div>';
+  return html;
+}
+
+function render_seExpenses(){
+  var expAnnual = seExpenseAnnualTotal();
+  var incAnnual = seIncomeAnnualTotal();
+  var netSE = incAnnual-expAnnual;
+  var html = pageHead(["Self-Employed"],"Business Expenses","The categories below are common self-employment write-offs, but you can always rename and add your own!");
+  html += '<div class="callout">What\'s actually deductible depends on your situation. When in doubt, run it by a tax pro.</div>';
+  html += '<div class="grid-3">'+statCard("Business income","2027 total", fmtMoney(incAnnual))+
+    statCard("Business expenses","2027 total", fmtMoney(expAnnual))+
+    statCard("Net self-employment income","income − expenses", fmtMoney(netSE), netSE>=0?"good":"bad")+'</div>';
+  html += '<div class="card"><h3>Full year</h3><div class="hint">Common deductible categories for you to track every month.</div>'+renderMatrixTable("se-expense")+'</div>';
+  return html;
+}
+
+var FILING_LABEL = {single:"Single", mfj:"Married filing jointly", hoh:"Head of household"};
+
+function render_taxes(){
+  var t = state.tax;
+  var sum = computeTaxSummary();
+  var html = pageHead(["Self-Employed"],"Estimated Taxes","A quarterly, 1040-ES style estimate covering self-employment tax, income tax, and safe-harbor tracking, all in one place.");
+  html += '<div class="callout">This is an educational estimate, not tax advice or a filing. Tax law and IRS figures change every year (2027 inflation-adjusted brackets aren\'t published yet as of writing), so the numbers below default to the latest confirmed 2026 IRS figures. Check irs.gov each year and confirm with a tax professional before you rely on this for real payments.</div>';
+
+  html += '<div class="card"><h3>Your situation</h3><div class="grid-2">'+
+    field_select("tax-field","filingStatus","Filing status",[["single","Single"],["mfj","Married filing jointly"],["hoh","Head of household"]], t.filingStatus)+
+    field_num("tax-field","standardDeduction."+t.filingStatus,"Standard deduction ("+FILING_LABEL[t.filingStatus]+")", t.standardDeduction[t.filingStatus])+
+    field_num("tax-field","w2Wages","W-2 wages this year (yours + spouse's, if any)", t.w2Wages)+
+    field_num("tax-field","w2Withholding","Federal tax already withheld from those wages", t.w2Withholding)+
+  '</div></div>';
+
+  html += '<div class="card"><h3>Net self-employment income used for this estimate</h3>'+
+    '<div class="chip-toggle" style="margin-bottom:12px;">'+
+      '<button data-role="tax-field" data-field="useProjection" data-val="false" aria-pressed="'+(!t.useProjection)+'">Use actual ledger ('+fmtMoney(seNetAnnual())+')</button>'+
+      '<button data-role="tax-field" data-field="useProjection" data-val="true" aria-pressed="'+(!!t.useProjection)+'">Use my own projection</button>'+
+    '</div>'+
+    (t.useProjection ? field_num("tax-field","projectedAnnualNetSE","Projected annual net self-employment income", t.projectedAnnualNetSE) : '<div class="hint">Pulled live from Business Income minus Business Expenses.</div>')+
+  '</div>';
+
+  html += '<div class="card"><h3>Safe harbor method</h3><div class="hint">The IRS penalty-free minimum is the smaller of these two: pick which one you\'re aiming to hit.</div>'+
+    '<div class="chip-toggle" style="margin-bottom:12px;">'+
+      '<button data-role="tax-field" data-field="method" data-val="priorYear" aria-pressed="'+(t.method==="priorYear")+'">100%/110% of last year\'s tax</button>'+
+      '<button data-role="tax-field" data-field="method" data-val="currentYear" aria-pressed="'+(t.method==="currentYear")+'">90% of this year\'s estimate</button>'+
+    '</div>'+
+    (t.method==="priorYear" ? '<div class="grid-2">'+
+      field_num("tax-field","priorYearTax","2026 total federal tax (Form 1040, line 22)", t.priorYearTax)+
+      field_num("tax-field","priorYearAGI","2026 adjusted gross income (AGI)", t.priorYearAGI)+
+      '</div><div class="hint">If your 2026 AGI was over $150,000 ($75,000 if married filing separately), the safe harbor is 110% of last year\'s tax instead of 100%. This is calculated for you automatically.</div>'
+      : '')+
+    field_num("tax-field","seWageBase","Social Security wage base for self-employment tax", t.seWageBase)+
+    '<div class="hint" style="margin-top:-6px;">2026 confirmed value: $184,500. The SSA usually announces the following year\'s figure in mid-October, so check ssa.gov and update this before you rely on the 2027 numbers.</div>'+
+  '</div>';
+
+  html += renderBracketEditor(t.filingStatus);
+
+  html += '<div class="card"><h3>What this adds up to</h3><div class="grid-4">'+
+    statCard("Net SE income used", "", fmtMoney(sum.netSE))+
+    statCard("Self-employment tax", "15.3% on 92.35% of net SE income", fmtMoney(sum.seTax))+
+    statCard("Estimated income tax", "after ½ SE-tax deduction", fmtMoney(sum.incomeTax))+
+    statCard("Total estimated tax", "SE tax + income tax", fmtMoney(sum.totalTax))+
+  '</div>'+
+  '<div class="table-wrap" style="margin-top:14px;"><table class="grid"><tbody>'+
+    trRow("Net SE income × 92.35% (SE tax base)", fmtMoney(sum.seTaxableBase))+
+    trRow("Social Security portion (12.4%, capped at wage base)", fmtMoney(sum.ssPortion))+
+    trRow("Medicare portion (2.9%, uncapped)", fmtMoney(sum.medicarePortion))+
+    trRow("Additional Medicare tax (0.9% over threshold)", fmtMoney(sum.addlMedicare))+
+    trRow("½ of SE tax (deduction from income)", "–"+fmtMoney(sum.halfSEDeduction))+
+    trRow("Standard deduction", "–"+fmtMoney(sum.stdDed))+
+    trRow("Taxable income", fmtMoney(sum.taxableIncome))+
+    trRow("Already covered by W-2 withholding", "–"+fmtMoney(Number(t.w2Withholding)||0))+
+    trRow("Required annual payment (your safe-harbor target)", fmtMoney(sum.requiredAnnualPayment), true)+
+  '</tbody></table></div></div>';
+
+  html += '<div class="card"><h3>Quarterly payment schedule</h3><div class="hint">Log what you actually paid as you go.</div>';
+  html += '<div class="table-wrap"><table class="grid"><thead><tr><th>Period</th><th>Covers</th><th>Due date</th><th>Target this period</th><th>Paid this period</th><th>Cumulative paid</th><th>Status</th></tr></thead><tbody>';
+  var runningTarget = 0;
+  TAX_PERIODS.forEach(function(p,i){
+    var targetShare = sum.requiredAnnualPayment/4;
+    runningTarget += targetShare;
+    var paidCum = taxPaidThrough(p.id);
+    var onTrack = paidCum >= runningTarget-0.01;
+    html += '<tr><td>'+p.label+'</td><td>'+p.range+'</td><td class="num">'+p.due+'</td>'+
+      '<td class="num">'+fmtMoney(runningTarget)+'</td>'+
+      '<td><input class="cell num-input standalone" style="width:90px;" type="number" step="0.01" data-role="tax-paid" data-period="'+p.id+'" value="'+(state.taxQuarters[p.id].paid||"")+'"></td>'+
+      '<td class="num">'+fmtMoney(paidCum)+'</td>'+
+      '<td>'+(onTrack?'<span class="badge good">'+ic("check")+' On track</span>':'<span class="badge bad">'+ic("info")+' Behind</span>')+'</td></tr>';
+  });
+  html += '</tbody></table></div></div>';
+  return html;
+}
+function trRow(label,val,strong){ return '<tr><td>'+label+'</td><td class="num" style="'+(strong?'font-weight:700;':'')+'">'+val+'</td></tr>'; }
+function field_num(role,field,label,val){
+  return '<div class="field"><label>'+label+'</label><input class="cell num-input" style="text-align:left;width:100%;" type="number" step="0.01" data-role="'+role+'" data-field="'+field+'" value="'+(val||0)+'"></div>';
+}
+function field_select(role,field,label,options,val){
+  var html = '<div class="field"><label>'+label+'</label><select data-role="'+role+'" data-field="'+field+'">';
+  options.forEach(function(o){ html += '<option value="'+o[0]+'" '+(o[0]===val?"selected":"")+'>'+o[1]+'</option>'; });
+  return html+'</select></div>';
+}
+function renderBracketEditor(status){
+  var brackets = state.tax.brackets[status];
+  var html = '<div class="card"><h3>Tax brackets used: '+FILING_LABEL[status]+'</h3><div class="hint">2026 confirmed IRS brackets, editable once 2027 figures are announced (typically each October/November).</div>';
+  html += '<div class="table-wrap"><table class="grid"><thead><tr><th>Income starts at</th><th>Rate</th><th></th></tr></thead><tbody>';
+  brackets.forEach(function(b,i){
+    html += '<tr><td><input class="cell num-input standalone" style="width:100px;" type="number" step="1" data-role="bracket-field" data-part="threshold" data-status="'+status+'" data-idx="'+i+'" value="'+b[0]+'"></td>'+
+      '<td><input class="cell num-input standalone" style="width:70px;" type="number" step="0.1" data-role="bracket-field" data-part="rate" data-status="'+status+'" data-idx="'+i+'" value="'+(b[1]*100)+'"> %</td>'+
+      '<td>'+(i>0?'<button class="row-del" data-role="bracket-del" data-status="'+status+'" data-idx="'+i+'">'+ic("x")+'</button>':'')+'</td></tr>';
+  });
+  html += '</tbody></table></div><div style="margin-top:10px;"><button class="btn small" data-role="bracket-add" data-status="'+status+'">'+ic("plus")+' Add bracket</button></div></div>';
+  return html;
+}
+
+function render_settings(){
+  var html = pageHead(["Settings"],"Settings & Backup","Everything here saves privately, right in this browser. Export a backup any time, especially before switching devices.");
+  html += '<div class="card"><h3>Your name</h3><div class="field"><label>Name (just for your own copy, never shared)</label><input class="row-label-input" style="border:1px solid var(--line-strong);" data-role="profile-field" data-field="name" value="'+escAttr(state.profile.name)+'" placeholder="Your name"></div></div>';
+  html += '<div class="card"><h3>Backup your data</h3><div class="hint">Your budget lives only in this browser. Export a backup file so you can move it to a new device, or just sleep better.</div>'+
+    '<div class="pill-row"><button class="btn primary" id="btnExport">'+ic("map")+' Export backup (.json)</button>'+
+    '<button class="btn" id="btnImportTrigger">'+ic("folder")+' Import backup</button>'+
+    '<input type="file" id="fileImport" accept="application/json" style="display:none;">'+
+    '</div><div id="importMsg" style="font-size:12px;color:var(--ink-2);margin-top:8px;"></div></div>';
+  html += '<div class="card"><h3>Start over</h3><div class="hint">Clears every number on this device. Export a backup first if you want to keep anything.</div>'+
+    '<button class="btn danger" id="btnReset">'+ic("x")+' Reset everything</button></div>';
+  html += '<div class="card"><h3>About this Budget</h3><div class="hint">Your 2027 Budget Template, built by Whealth with Meag. A from-scratch revamp of the original budget template, redesigned to work for W-2 employees, self-employed folks, and everyone in between, with a real quarterly estimated-tax calculator built in.</div></div>';
+  return html;
+}
+
+function afterRender(sec){
+  if(sec==="settings") wireSettingsButtons();
+}
+
+/* ============================================================
+   MUTATION HELPERS
+   ============================================================ */
+function addCategory(scope, quarterId){
+  var sc = getScope(scope);
+  var id = uid();
+  if(scope.indexOf("group:")===0){
+    var activeQ = {q1:false,q2:false,q3:false,q4:false};
+    activeQ[quarterId||"q1"] = true;
+    sc.cats.push({id:id, label:"New category", budgetQ:{q1:0,q2:0,q3:0,q4:0}, activeQ:activeQ});
+  } else {
+    sc.cats.push({id:id, label:"New category", budget:0});
+  }
+  sc.acts[id] = blankMonthMap();
+}
+function delCategory(scope, catId){
+  var sc = getScope(scope);
+  sc.cats.splice(sc.cats.findIndex(function(c){return c.id===catId;}),1);
+  delete sc.acts[catId];
+}
+// Removing a category from one quarter on Budget Setup never deletes it or its logged
+// actuals - it just turns it off for that quarter, so it stays safe in any other quarter
+// it's active in (and can be turned back on later from the "not used this quarter" list).
+function deactivateCategoryForQuarter(scope, catId, quarterId){
+  var sc = getScope(scope);
+  var cat = sc.cats.find(function(c){ return c.id===catId; });
+  if(cat){
+    if(!cat.activeQ) cat.activeQ = {q1:true,q2:true,q3:true,q4:true};
+    cat.activeQ[quarterId] = false;
+  }
+}
+function activateCategoryForQuarter(scope, catId, quarterId){
+  var sc = getScope(scope);
+  var cat = sc.cats.find(function(c){ return c.id===catId; });
+  if(cat){
+    if(!cat.activeQ) cat.activeQ = {q1:true,q2:true,q3:true,q4:true};
+    cat.activeQ[quarterId] = true;
+  }
+}
+function setNested(obj, path, val){
+  var parts = path.split(".");
+  var o = obj;
+  for(var i=0;i<parts.length-1;i++){ o = o[parts[i]]; }
+  o[parts[parts.length-1]] = val;
+}
+function getNested(obj, path){
+  var parts = path.split(".");
+  var o = obj;
+  for(var i=0;i<parts.length;i++){ o = o[parts[i]]; if(o===undefined) return undefined; }
+  return o;
+}
+
+/* ============================================================
+   EVENT DELEGATION
+   ============================================================ */
+document.addEventListener("change", function(e){
+  var t = e.target;
+  var role = t.getAttribute && t.getAttribute("data-role");
+  if(!role) return;
+  var rerender = true;
+  pushUndo();
+
+  if(role==="label"){
+    var sc = getScope(t.dataset.scope);
+    var cat = sc.cats.find(function(c){return c.id===t.dataset.cat;});
+    if(cat) cat.label = t.value;
+    rerender = false;
+  } else if(role==="budget"){
+    var sc2 = getScope(t.dataset.scope);
+    var cat2 = sc2.cats.find(function(c){return c.id===t.dataset.cat;});
+    if(cat2){
+      if(t.dataset.quarter){
+        if(!cat2.budgetQ) cat2.budgetQ = {q1:0,q2:0,q3:0,q4:0};
+        cat2.budgetQ[t.dataset.quarter] = parseFloat(t.value)||0;
+      } else {
+        cat2.budget = parseFloat(t.value)||0;
+      }
+    }
+  } else if(role==="cell"){
+    var sc3 = getScope(t.dataset.scope);
+    if(!sc3.acts[t.dataset.cat]) sc3.acts[t.dataset.cat] = blankMonthMap();
+    sc3.acts[t.dataset.cat][t.dataset.month] = parseFloat(t.value)||0;
+  } else if(role==="profile-field"){
+    state.profile[t.dataset.field] = t.value;
+    rerender=false;
+  } else if(role==="quarterly-field"){
+    state.quarterly[t.dataset.q][t.dataset.field] = t.value;
+    rerender=false;
+  } else if(role==="ef-field"){
+    state.emergencyFund[t.dataset.field] = parseFloat(t.value)||0;
+  } else if(role==="ef-c-field"){
+    var c = state.emergencyFund.contributions.find(function(x){return x.id===t.dataset.id;});
+    if(c) c[t.dataset.field] = (t.dataset.field==="amount") ? (parseFloat(t.value)||0) : t.value;
+  } else if(role==="week-field"){
+    var w = state.weekPlanner.find(function(x){return x.id===t.dataset.id;});
+    if(w){ w[t.dataset.field] = (t.dataset.field==="done") ? t.checked : t.value; }
+    rerender=false;
+  } else if(role==="se-income-field"){
+    var l = state.selfEmployed.incomeLines.find(function(x){return x.id===t.dataset.id;});
+    if(l) l[t.dataset.field] = (t.dataset.field==="amount") ? (parseFloat(t.value)||0) : t.value;
+  } else if(role==="tax-field"){
+    var f = t.dataset.field;
+    if(f==="filingStatus"){ state.tax.filingStatus = t.value; }
+    else if(f.indexOf("standardDeduction.")===0){ setNested(state.tax, f, parseFloat(t.value)||0); }
+    else { state.tax[f] = (t.tagName==="SELECT") ? t.value : (parseFloat(t.value)||0); }
+  } else if(role==="bracket-field"){
+    var b = state.tax.brackets[t.dataset.status][+t.dataset.idx];
+    if(t.dataset.part==="threshold") b[0] = parseFloat(t.value)||0;
+    else b[1] = (parseFloat(t.value)||0)/100;
+  } else if(role==="tax-paid"){
+    state.taxQuarters[t.dataset.period].paid = parseFloat(t.value)||0;
+  } else if(role==="sub-field"){
+    var sub = state.subscriptions.find(function(x){return x.id===t.dataset.id;});
+    if(sub){
+      var sf = t.dataset.field;
+      if(sf==="amount") sub.amount = parseFloat(t.value)||0;
+      else if(sf==="active") sub.active = t.checked;
+      else if(sf==="cadence") sub.cadence = t.value;
+      else sub.name = t.value;
+    }
+  } else if(role==="freelance-field"){
+    state.freelanceRate[t.dataset.field] = parseFloat(t.value)||0;
+  } else if(role==="debtpayoff-field"){
+    state.debtPayoff[t.dataset.field] = parseFloat(t.value)||0;
+  } else if(role==="debt-field"){
+    var dbt = state.debtPayoff.debts.find(function(x){return x.id===t.dataset.id;});
+    if(dbt) dbt[t.dataset.field] = (t.dataset.field==="name") ? t.value : (parseFloat(t.value)||0);
+  } else {
+    rerender = false;
+  }
+
+  saveState();
+  if(rerender) renderMain(); else { /* light update */ }
+});
+
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-role]");
+  if(!t) return;
+  var role = t.getAttribute("data-role");
+  var handled = true;
+  if(role!=="set-month" && role!=="setup-quarter") pushUndo();
+
+  if(role==="add-cat"){ addCategory(t.dataset.scope, t.dataset.quarter); }
+  else if(role==="del-cat"){ delCategory(t.dataset.scope, t.dataset.cat); }
+  else if(role==="deactivate-cat-quarter"){ deactivateCategoryForQuarter(t.dataset.scope, t.dataset.cat, t.dataset.quarter); }
+  else if(role==="activate-cat-quarter"){ activateCategoryForQuarter(t.dataset.scope, t.dataset.cat, t.dataset.quarter); }
+  else if(role==="setup-quarter"){ state.ui.setupQuarter = t.dataset.quarter; }
+  else if(role==="profile-selfemployed"){
+    var v = t.dataset.val;
+    state.profile.isSelfEmployed = (v==="true") ? true : (v==="false" ? false : "mix");
+  }
+  else if(role==="set-month"){ state.ui.activeMonth = t.dataset.month; }
+  else if(role==="ef-c-add"){ state.emergencyFund.contributions.push({id:uid(),date:"",note:"",amount:0}); }
+  else if(role==="ef-c-del"){ state.emergencyFund.contributions = state.emergencyFund.contributions.filter(function(c){return c.id!==t.dataset.id;}); }
+  else if(role==="se-income-add"){ state.selfEmployed.incomeLines.push({id:uid(),date:"",client:"",note:"",amount:0}); }
+  else if(role==="se-income-del"){ state.selfEmployed.incomeLines = state.selfEmployed.incomeLines.filter(function(l){return l.id!==t.dataset.id;}); }
+  else if(role==="bracket-add"){ state.tax.brackets[t.dataset.status].push([0,0]); }
+  else if(role==="bracket-del"){ state.tax.brackets[t.dataset.status].splice(+t.dataset.idx,1); }
+  else if(role==="tax-field" && t.dataset.val!==undefined){
+    var f2 = t.dataset.field, v2 = t.dataset.val;
+    state.tax[f2] = (v2==="true") ? true : (v2==="false" ? false : v2);
+  }
+  else if(role==="sub-add"){ state.subscriptions.push({id:uid(),name:"",amount:0,cadence:"monthly",active:true}); }
+  else if(role==="sub-del"){ state.subscriptions = state.subscriptions.filter(function(s){return s.id!==t.dataset.id;}); }
+  else if(role==="debtpayoff-strategy"){ state.debtPayoff.strategy = t.dataset.val; }
+  else if(role==="debt-add"){ state.debtPayoff.debts.push({id:uid(),name:"",balance:0,apr:0,minPayment:0}); }
+  else if(role==="debt-del"){ state.debtPayoff.debts = state.debtPayoff.debts.filter(function(d){return d.id!==t.dataset.id;}); }
+  else { handled = false; }
+
+  if(handled){ saveState(); renderNav(); renderMain(); }
+});
+
+/* ============================================================
+   SETTINGS PAGE WIRING (export / import / reset)
+   ============================================================ */
+var downloadsNS = null;
+
+
+function wireSettingsButtons(){
+  var exportBtn = document.getElementById("btnExport");
+  var importTrigger = document.getElementById("btnImportTrigger");
+  var fileInput = document.getElementById("fileImport");
+  var resetBtn = document.getElementById("btnReset");
+  var msg = document.getElementById("importMsg");
+
+  if(exportBtn) exportBtn.addEventListener("click", function(){
+    var json = JSON.stringify(state, null, 2);
+    var filename = "2027-budget-template-backup.json";
+    if(downloadsNS){
+      downloadsNS.save({filename:filename, data:json}).then(function(){
+        msg.textContent = "Backup saved.";
+      }).catch(function(err){
+        if(err && err.code==="declined"){ msg.textContent = "Export cancelled."; }
+        else if(triggerBrowserDownload(filename, json)){ msg.textContent = "Backup saved."; }
+        else { showManualExport(json, msg); }
+      });
+    } else if(triggerBrowserDownload(filename, json)){
+      msg.textContent = "Backup saved.";
+    } else {
+      showManualExport(json, msg);
+    }
+  });
+  if(importTrigger) importTrigger.addEventListener("click", function(){ fileInput.click(); });
+  if(fileInput) fileInput.addEventListener("change", function(){
+    var file = fileInput.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try{
+        var parsed = JSON.parse(reader.result);
+        pushUndo();
+        state = migrateState(parsed);
+        saveState();
+        renderNav(); renderMain();
+        var m = document.getElementById("importMsg");
+        if(m) m.textContent = "Backup imported.";
+      }catch(err){
+        var m2 = document.getElementById("importMsg");
+        if(m2) m2.textContent = "Couldn't read that file. Make sure it's a Budget backup (.json).";
+      }
+    };
+    reader.readAsText(file);
+  });
+  if(resetBtn) resetBtn.addEventListener("click", function(){
+    pushUndo();
+    state = defaultState();
+    saveState();
+    renderNav(); renderMain();
+  });
+}
+function triggerBrowserDownload(filename, text){
+  try{
+    var blob = new Blob([text], {type:"application/json"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    return true;
+  }catch(e){
+    return false;
+  }
+}
+function showManualExport(json, msgEl){
+  var mount = document.getElementById("mainMount");
+  var wrap = document.createElement("div");
+  wrap.className = "card";
+  wrap.innerHTML = '<h3>Copy your backup</h3><div class="hint">Direct download isn\'t available in this view. Copy everything below and save it as a .json file instead.</div><textarea style="width:100%;height:160px;font-family:\'IBM Plex Mono\',monospace;font-size:11.5px;" readonly></textarea>';
+  wrap.querySelector("textarea").value = json;
+  mount.insertBefore(wrap, mount.firstChild);
+  if(msgEl) msgEl.textContent = "";
+}
+
+/* ============================================================
+   MOBILE NAV + BOOT
+   ============================================================ */
+document.getElementById("menuBtn").addEventListener("click", function(){
+  document.getElementById("rail").classList.add("open");
+  document.getElementById("railScrim").style.display="block";
+});
+document.getElementById("railScrim").addEventListener("click", closeMobileNav);
+
+var btnUndoEl = document.getElementById("btnUndo");
+if(btnUndoEl) btnUndoEl.addEventListener("click", doUndo);
+document.addEventListener("keydown", function(e){
+  if((e.ctrlKey||e.metaKey) && !e.shiftKey && e.key.toLowerCase()==="z"){
+    e.preventDefault();
+    doUndo();
+  }
+});
+refreshUndoBtn();
+
+renderNav();
+renderMain();
+
+})();
+</script>
+</body></html>
