@@ -305,6 +305,24 @@ table.grid input.cell.standalone, table.grid select.cell.standalone{border-color
 .save-note{font-size:11.5px; color:var(--ink-mute); display:flex; align-items:center; gap:6px;}
 .save-note svg{width:12px;height:12px;}
 
+/* transactions */
+.tx-form{display:grid; grid-template-columns:150px 170px minmax(150px,1fr) minmax(140px,1.3fr) 120px auto; gap:10px; align-items:end;}
+.tx-form .field{margin-bottom:0;}
+.tx-form input,.tx-form select{width:100%;}
+@media (max-width:1100px){ .tx-form{grid-template-columns:1fr 1fr 1fr;} }
+@media (max-width:560px){ .tx-form{grid-template-columns:1fr 1fr;} .tx-form .tx-desc{grid-column:1 / -1;} }
+.tx-msg{font-size:12px; color:var(--brick); margin-top:8px; min-height:1em;}
+.tx-type{display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; white-space:nowrap;}
+.tx-type.income{background:var(--teal-soft); color:var(--teal);}
+.tx-type.fixed,.tx-type.variable,.tx-type.debt{background:var(--brick-soft); color:var(--brick);}
+.tx-type.savings{background:var(--sage-soft); color:var(--sage);}
+.tx-type.investing{background:var(--gold-soft); color:var(--gold-ink);}
+table.grid select.tx-sel{width:100%; min-width:120px; text-align:left; border:1px solid transparent; background:transparent; padding:3px 4px; border-radius:4px;}
+table.grid select.tx-sel:hover{border-color:var(--line-strong);}
+.tx-cell{display:inline-block; width:74px; text-align:right; padding:3px 4px; border:1px dashed var(--line-strong); border-radius:4px; background:var(--paper-sunken); color:var(--ink); cursor:pointer; font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums; font-size:13px;}
+.tx-cell:hover{border-color:var(--teal); color:var(--teal);}
+.tx-outside{font-size:10.5px; color:var(--brick); font-weight:600; display:block; margin-top:2px;}
+
 .menu-btn{display:none; border:1px solid var(--line-strong); background:var(--paper-raised); border-radius:7px; padding:7px 9px; margin-bottom:14px; cursor:pointer;}
 @media (max-width:760px){
   .rail{position:fixed; left:0; top:0; height:100vh; transform:translateX(-100%); transition:transform .18s ease; z-index:40; box-shadow:2px 0 12px var(--shadow);}
@@ -346,16 +364,37 @@ table.grid input.cell.standalone, table.grid select.cell.standalone{border-color
 /* ============================================================
    CONSTANTS
    ============================================================ */
-var MONTHS = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
-var MONTH_LABEL = {jan:"January",feb:"February",mar:"March",apr:"April",may:"May",jun:"June",jul:"July",aug:"August",sep:"September",oct:"October",nov:"November",dec:"December"};
-var MONTH_SHORT = {jan:"Jan",feb:"Feb",mar:"Mar",apr:"Apr",may:"May",jun:"Jun",jul:"Jul",aug:"Aug",sep:"Sep",oct:"Oct",nov:"Nov",dec:"Dec"};
+// The tracker runs Nov 2026 - Dec 2027: two bonus "head start" months, then all of 2027.
+var MONTHS_2027 = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
+var MONTHS = ["nov26","dec26"].concat(MONTHS_2027);
+var MONTH_LABEL = {nov26:"November 2026",dec26:"December 2026",jan:"January",feb:"February",mar:"March",apr:"April",may:"May",jun:"June",jul:"July",aug:"August",sep:"September",oct:"October",nov:"November",dec:"December"};
+var MONTH_SHORT = {nov26:"Nov '26",dec26:"Dec '26",jan:"Jan",feb:"Feb",mar:"Mar",apr:"Apr",may:"May",jun:"Jun",jul:"Jul",aug:"Aug",sep:"Sep",oct:"Oct",nov:"Nov",dec:"Dec"};
 var QUARTERS = [
+  {id:"q0", label:"Nov–Dec '26", months:["nov26","dec26"]},
   {id:"q1", label:"Q1", months:["jan","feb","mar"]},
   {id:"q2", label:"Q2", months:["apr","may","jun"]},
   {id:"q3", label:"Q3", months:["jul","aug","sep"]},
   {id:"q4", label:"Q4", months:["oct","nov","dec"]}
 ];
 var YEAR = 2027;
+var RANGE_LABEL = "Nov 2026 – Dec 2027";
+var RANGE_SHORT = "Nov '26 – Dec '27";
+var DATE_MIN = "2026-11-01", DATE_MAX = "2027-12-31";
+// "2027-03-14" -> "mar", "2026-11-02" -> "nov26", anything outside the tracker -> null
+function monthKeyFromDate(date){
+  if(!date || date.length<7) return null;
+  var y = date.slice(0,4), mi = parseInt(date.slice(5,7),10)-1;
+  if(!(mi>=0 && mi<12)) return null;
+  if(y==="2026") return mi===10 ? "nov26" : (mi===11 ? "dec26" : null);
+  if(y===String(YEAR)) return MONTHS_2027[mi];
+  return null;
+}
+function monthKeyToDate(m){
+  if(m==="nov26") return "2026-11-01";
+  if(m==="dec26") return "2026-12-01";
+  return YEAR+"-"+String(MONTHS_2027.indexOf(m)+1).padStart(2,"0")+"-01";
+}
+function blankQ(v){ return {q0:v,q1:v,q2:v,q3:v,q4:v}; }
 
 var SE_EXPENSE_CATS = [
   "Home Office","Software & Subscriptions","Contract Labor","Supplies & Materials",
@@ -445,10 +484,11 @@ function defaultState(){
     subscriptions:[], // {id,name,amount,cadence:"monthly"|"yearly",active:true,note}
     freelanceRate:{targetIncome:0, annualExpenses:0, taxBufferPct:30, hoursPerWeek:20, weeksPerYear:48},
     debtPayoff:{strategy:"avalanche", extraMonthly:0, debts:[]}, // debts: {id,name,balance,apr,minPayment}
-    ui:{ activeSection:"welcome", activeMonth:"jan", setupQuarter:"q1" }
+    transactions:[], // {id,date,group,catId,desc,amount} - each one rolls into that category's Monthly Tracker cell
+    ui:{ activeSection:"welcome", activeMonth:"nov26", setupQuarter:"q0", txHelp:true, txMonth:"all", txGroup:"all", txDraft:{date:"", group:"variable", catId:""} }
   };
   Object.keys(DEFAULT_CATEGORIES).forEach(function(group){
-    s.categories[group] = DEFAULT_CATEGORIES[group].map(function(label){ return {id:uid(), label:label, budgetQ:{q1:0,q2:0,q3:0,q4:0}, activeQ:{q1:true,q2:true,q3:true,q4:true}}; });
+    s.categories[group] = DEFAULT_CATEGORIES[group].map(function(label){ return {id:uid(), label:label, budgetQ:blankQ(0), activeQ:blankQ(true)}; });
     s.actuals[group] = {};
     s.categories[group].forEach(function(c){ s.actuals[group][c.id] = blankMonthMap(); });
   });
@@ -486,10 +526,10 @@ function migrateCategoryShape(parsed){
       if(!c || typeof c!=="object") return;
       if(!c.budgetQ || typeof c.budgetQ!=="object"){
         var flat = Number(c.budget)||0;
-        c.budgetQ = {q1:flat, q2:flat, q3:flat, q4:flat};
+        c.budgetQ = blankQ(flat);
       }
       if(!c.activeQ || typeof c.activeQ!=="object"){
-        c.activeQ = {q1:true, q2:true, q3:true, q4:true};
+        c.activeQ = blankQ(true);
       }
       delete c.budget;
     });
@@ -526,7 +566,9 @@ function migrateState(parsed){
 }
 
 var saveTimer=null;
+var txVersion=0;
 function saveState(){
+  txVersion++;
   clearTimeout(saveTimer);
   saveTimer = setTimeout(function(){
     try{
@@ -619,7 +661,8 @@ var ICONS = {
   x:'<path d="M5 5l10 10M15 5 5 15"/>',
   repeat:'<path d="M4 8a6 6 0 0 1 10.5-4M16 10a6 6 0 0 1-10.5 4"/><path d="M13 3v3h3M7 17v-3H4"/>',
   clock:'<circle cx="10" cy="10" r="7.3"/><path d="M10 6v4l3 2"/>',
-  trendDown:'<path d="M3.5 6 8 10.5l3-2.5 5 6"/><path d="M13 14.2h3.2V11"/>'
+  trendDown:'<path d="M3.5 6 8 10.5l3-2.5 5 6"/><path d="M13 14.2h3.2V11"/>',
+  list:'<path d="M7.5 5.5h9M7.5 10h9M7.5 14.5h9"/><circle cx="4" cy="5.5" r="0.9"/><circle cx="4" cy="10" r="0.9"/><circle cx="4" cy="14.5" r="0.9"/>'
 };
 function ic(name, cls){
   return '<svg class="'+(cls||'')+'" width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;">'+(ICONS[name]||"")+'</svg>';
@@ -634,6 +677,7 @@ var NAV = [
     {id:"setup", label:"Budget Setup", icon:"gear"}
   ]},
   {label:"Monthly Tracker", items:[
+    {id:"transactions", label:"Transactions", icon:"list"},
     {id:"group:income", label:"Income", icon:"arrowUp"},
     {id:"group:fixed", label:"Fixed Expenses", icon:"receipt"},
     {id:"group:variable", label:"Variable Expenses", icon:"cart"},
@@ -702,11 +746,44 @@ function closeMobileNav(){
 /* ============================================================
    AGGREGATION HELPERS
    ============================================================ */
+/* ---------- Transactions ----------
+   Every logged transaction is added on top of whatever was typed straight into a Monthly
+   Tracker cell, so nothing entered the old way is ever lost. Totals are cached per change. */
+var TX_TYPES = [
+  {group:"income",    label:"Income"},
+  {group:"fixed",     label:"Fixed Expense"},
+  {group:"variable",  label:"Variable Expense"},
+  {group:"debt",      label:"Debt Payment"},
+  {group:"savings",   label:"Savings"},
+  {group:"investing", label:"Investing"}
+];
+var TX_TYPE_LABEL = {}; TX_TYPES.forEach(function(t){ TX_TYPE_LABEL[t.group]=t.label; });
+function txMonthOf(date){ return monthKeyFromDate(date); }
+var txCache = null;
+function txTotals(){
+  if(txCache && txCache.state===state && txCache.v===txVersion) return txCache;
+  var sums = {}, counts = {};
+  (state.transactions||[]).forEach(function(t){
+    var m = txMonthOf(t.date);
+    if(!m || !t.group || !t.catId) return;
+    var k = t.group+"|"+t.catId+"|"+m;
+    sums[k] = (sums[k]||0) + (Number(t.amount)||0);
+    counts[k] = (counts[k]||0) + 1;
+  });
+  txCache = {state:state, v:txVersion, sums:sums, counts:counts};
+  return txCache;
+}
+function txSum(group, catId, month){ return txTotals().sums[group+"|"+catId+"|"+month]||0; }
+function txCount(group, catId, month){ return txTotals().counts[group+"|"+catId+"|"+month]||0; }
+function manualActual(group, catId, month){ return Number(((state.actuals[group]||{})[catId]||{})[month])||0; }
+function actualFor(group, catId, month){ return manualActual(group, catId, month) + txSum(group, catId, month); }
+function actualYearFor(group, catId){ return MONTHS.reduce(function(a,m){ return a+actualFor(group, catId, m); },0); }
+
 function groupMonthTotal(group, month){
-  var cats = state.categories[group], acts = state.actuals[group];
+  var cats = state.categories[group];
   return cats.reduce(function(sum,c){
     if(group==="income" && /self-employ/i.test(c.label)) return sum + seIncomeMonthTotal(month);
-    return sum + (Number((acts[c.id]||{})[month])||0);
+    return sum + actualFor(group, c.id, month);
   },0);
 }
 function groupAnnualTotal(group){
@@ -735,10 +812,7 @@ function groupBudgetMonthly(group, quarterId){
 }
 function seIncomeMonthTotal(month){
   return state.selfEmployed.incomeLines.reduce(function(sum,l){
-    if(!l.date) return sum;
-    var d = new Date(l.date+"T00:00:00");
-    if(isNaN(d)) return sum;
-    if(MONTHS[d.getMonth()]===month) return sum+(Number(l.amount)||0);
+    if(monthKeyFromDate(l.date)===month) return sum+(Number(l.amount)||0);
     return sum;
   },0);
 }
@@ -750,15 +824,14 @@ function seExpenseMonthTotal(month){
   return cats.reduce(function(sum,c){ return sum+(Number((acts[c.id]||{})[month])||0); },0);
 }
 function seExpenseAnnualTotal(){ return MONTHS.reduce(function(a,m){ return a+seExpenseMonthTotal(m); },0); }
-function seNetAnnual(){ return seIncomeAnnualTotal() - seExpenseAnnualTotal(); }
+// Tax-year (2027 only) business numbers - the Nov/Dec 2026 head-start months belong to 2026 taxes.
+function seIncome2027(){ return MONTHS_2027.reduce(function(a,m){ return a+seIncomeMonthTotal(m); },0); }
+function seExpense2027(){ return MONTHS_2027.reduce(function(a,m){ return a+seExpenseMonthTotal(m); },0); }
+function seNetAnnual(){ return seIncome2027() - seExpense2027(); }
 
 function incomeMonthTotal(month){
   // "Income" group total, but Self-Employment line auto-pulled from SE ledger rather than manual entry
-  var cats = state.categories.income, acts = state.actuals.income;
-  return cats.reduce(function(sum,c){
-    if(/self-employ/i.test(c.label)) return sum + seIncomeMonthTotal(month)/1 - 0*seExpenseMonthTotal(month);
-    return sum + (Number((acts[c.id]||{})[month])||0);
-  },0) ;
+  return groupMonthTotal("income", month);
 }
 function expensesMonthTotal(month){
   return groupMonthTotal("fixed",month)+groupMonthTotal("variable",month)+seExpenseMonthTotal(month);
@@ -1070,6 +1143,10 @@ function renderMatrixTable(scope, opts){
       if(isAuto){
         var av = seIncomeMonthTotal(m);
         html += '<td><span class="cell num-input" style="display:inline-block;width:74px;color:var(--ink-2);" title="Auto-pulled from Business Income, logged there instead">'+(av?fmtMoney(av):"—")+'</span></td>';
+      } else if(sc.group && txCount(sc.group, c.id, m)){
+        var tv = actualFor(sc.group, c.id, m), tn = txCount(sc.group, c.id, m), tm = manualActual(sc.group, c.id, m);
+        var tip = tn+" transaction"+(tn===1?"":"s")+(tm?" + "+fmtMoney(tm,{cents:true})+" typed in directly":"")+". Click to see or edit them on the Transactions page.";
+        html += '<td><button type="button" class="tx-cell" data-role="tx-goto" data-group="'+sc.group+'" data-month="'+m+'" title="'+escAttr(tip)+'">'+fmtMoney(tv)+'</button></td>';
       } else {
         var v = (acts[c.id]||{})[m]||0;
         var inQuarter = lockStructure ? catIsActiveInQuarter(c, monthToQuarter(m)) : true;
@@ -1080,7 +1157,7 @@ function renderMatrixTable(scope, opts){
         }
       }
     });
-    var rowTotal = isAuto ? seIncomeAnnualTotal() : sumMonthMap(acts[c.id]||{});
+    var rowTotal = isAuto ? seIncomeAnnualTotal() : (sc.group ? actualYearFor(sc.group, c.id) : sumMonthMap(acts[c.id]||{}));
     html += '<td class="num" data-role="rowtotal" data-cat="'+c.id+'">'+fmtMoney(rowTotal)+'</td>';
     html += '<td>'+((isAuto||lockStructure)?'':'<button class="row-del" data-role="del-cat" data-scope="'+scope+'" data-cat="'+c.id+'" aria-label="Remove category" title="Remove">'+ic("x")+'</button>')+'</td>';
     html += '</tr>';
@@ -1093,12 +1170,14 @@ function renderMatrixTable(scope, opts){
   MONTHS.forEach(function(m){
     var colTotal = cats.reduce(function(a,c){
       if(isAutoSeIncomeCat(scope,c)) return a+seIncomeMonthTotal(m);
+      if(sc.group) return a+actualFor(sc.group, c.id, m);
       return a+(Number((acts[c.id]||{})[m])||0);
     },0);
     html += '<td class="num" data-role="coltotal" data-month="'+m+'">'+fmtMoney(colTotal)+'</td>';
   });
   var grand = cats.reduce(function(a,c){
     if(isAutoSeIncomeCat(scope,c)) return a+seIncomeAnnualTotal();
+    if(sc.group) return a+actualYearFor(sc.group, c.id);
     return a+sumMonthMap(acts[c.id]||{});
   },0);
   html += '<td class="num" data-role="grandtotal">'+fmtMoney(grand)+'</td><td></td></tr></tfoot></table></div>';
@@ -1120,6 +1199,7 @@ function renderMain(){
   var html = "";
   if(sec==="welcome") html = render_welcome();
   else if(sec==="setup") html = render_setup();
+  else if(sec==="transactions") html = render_transactions();
   else if(sec.indexOf("group:")===0) html = render_group(sec.slice(6));
   else if(sec==="dashboard") html = render_dashboard();
   else if(sec==="quarterly") html = render_quarterly();
@@ -1147,16 +1227,17 @@ function render_welcome(){
   var totalExpYr = groupAnnualTotal("fixed")+groupAnnualTotal("variable")+seExpenseAnnualTotal();
   var netYr = totalIncomeYr-totalExpYr-groupAnnualTotal("debt")-groupAnnualTotal("savings")-groupAnnualTotal("investing");
   return pageHead(["Start Here"],"Welcome to your 2027 Budget Template","An updated look and approach to our budget template built for those who are salaried, self-employed or both.")+
+  '<div class="callout teal"><strong>Start today:</strong> your tracker begins in November 2026, so you can get a head start before the new year. Nov and Dec 2026 have their own budget on Budget Setup, then 2027 runs quarter by quarter.</div>'+
   '<div class="callout">You are such a valued member of the Whealth with Meag community. I\'m so glad you\'re here. Everything below saves automatically as you go. ⬇️</div>'+
   '<div class="grid-3">'+
-    statCard("Projected income","2027 total, all income streams", fmtMoney(totalIncomeYr))+
+    statCard("Projected income",RANGE_SHORT+", all income streams", fmtMoney(totalIncomeYr))+
     statCard("Projected spending","Fixed + variable + business expenses", fmtMoney(totalExpYr))+
     statCard("Projected net","After debt, savings & investing", fmtMoney(netYr), netYr>=0?"good":"bad")+
   '</div>'+
   '<div class="card"><h3>How your Budget is laid out</h3><div class="hint">It\'s time to take control of your money, you got this!</div>'+
     '<div class="grid-2" style="margin-top:6px;">'+
     howCard("gear","1. Budget Setup","Name your categories and set a monthly budget target for each: income, fixed costs, variable spending, debt, savings and investing.")+
-    howCard("map","2. Monthly Tracker","Log real numbers in six simple spreadsheets, filling out each month as you go.")+
+    howCard("map","2. Monthly Tracker","Log each transaction as it happens on the Transactions page and it fills in your six monthly spreadsheets for you. You can still type totals straight into a month, too. Business income and expenses have their own pages under Self-Employed.")+
     howCard("flag","3. Big Picture","Your annual dashboard, quarterly check-ins, emergency fund, net worth and a 12-week action planner.")+
     howCard("brief","4. Self-Employed","New for 2027: track your 1099 and business income by client, log deductible business expenses, and see your net self-employment income.")+
     howCard("calc","5. Estimated Taxes","A full quarterly (1040-ES style) estimated tax calculator built for self-employment tax, safe harbor rules and due dates.")+
@@ -1187,7 +1268,7 @@ function render_setup(){
     '<button class="pill" data-role="profile-selfemployed" data-val="true" aria-pressed="'+(state.profile.isSelfEmployed===true)+'">Fully self-employed</button>'+
     '</div></div>';
 
-  html += '<div class="card"><h3>Which quarter are you setting up?</h3><div class="hint">Categories and budgets can be different every quarter. Add a category just for one quarter, or turn one off when you don\'t need it - nothing is ever deleted, so any numbers you\'ve already logged stay safe, and you can turn a category back on later.</div>';
+  html += '<div class="card"><h3>Which quarter are you setting up?</h3><div class="hint">Nov–Dec 2026 is your head-start period, then 2027 goes quarter by quarter. Categories and budgets can be different every period. Add a category just for one quarter, or turn one off when you don\'t need it - nothing is ever deleted, so any numbers you\'ve already logged stay safe, and you can turn a category back on later.</div>';
   html += '<div class="pill-row">'+QUARTERS.map(function(q){
     return '<button class="pill" data-role="setup-quarter" data-quarter="'+q.id+'" aria-pressed="'+(qid===q.id)+'">'+q.label+'</button>';
   }).join('')+'</div></div>';
@@ -1211,8 +1292,9 @@ function render_setup(){
     if(parkedCats.length){
       html += '<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line);"><div class="hint" style="margin-bottom:8px;">Not used in '+qLabel+':</div><div class="pill-row">'+
         parkedCats.map(function(c){
-          return '<button class="pill" data-role="activate-cat-quarter" data-scope="group:'+group+'" data-cat="'+c.id+'" data-quarter="'+qid+'" title="Add back to '+qLabel+'">+ '+escHtml(c.label)+'</button>';
-        }).join('')+'</div></div>';
+          return '<span style="display:inline-flex;align-items:center;gap:2px;"><button class="pill" data-role="activate-cat-quarter" data-scope="group:'+group+'" data-cat="'+c.id+'" data-quarter="'+qid+'" title="Add back to '+qLabel+'">+ '+escHtml(c.label)+'</button>'+
+            '<button class="row-del" data-role="del-cat-forever" data-scope="group:'+group+'" data-cat="'+c.id+'" aria-label="Delete '+escAttr(c.label)+' for good" title="Delete for good, from every period, along with any amounts or transactions logged to it. Undo brings it back.">'+ic("x")+'</button></span>';
+        }).join('')+'</div><div class="hint" style="margin:8px 0 0;">Tap + to add one back to '+qLabel+', or × to delete it everywhere for good.</div></div>';
     }
     html += '</div>';
   });
@@ -1243,8 +1325,134 @@ function render_group(group){
     statCard("Actual", "logged for "+MONTH_SHORT[monthSel], fmtMoney(actualTotal))+
     statCard(diff>=0?"Under budget":"Over budget","difference", fmtMoney(Math.abs(diff)), diff>=0?"good":"bad")+
     '</div></div>';
-  html += '<div class="card"><h3>Full year</h3><div class="hint">Every category you\'ve set up for every month. The totals update when you click away from a field. A blank, grayed out month means that category isn\'t set up for that quarter yet. You can add it back on Budget Setup tab to log an amount there.</div>'+renderMatrixTable("group:"+group)+'</div>';
+  var gTx = (state.transactions||[]).filter(function(t){ return t.group===group && txMonthOf(t.date)===monthSel; });
+  html += '<div class="callout teal" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><span><strong>'+gTx.length+' transaction'+(gTx.length===1?'':'s')+'</strong> logged for '+MONTH_LABEL[monthSel]+'. Anything you log on the Transactions page lands in the matching cell below automatically.</span>'+
+    '<button class="btn small" data-role="tx-goto" data-group="'+group+'" data-month="'+monthSel+'">'+ic("list")+' Log or view transactions</button></div>';
+  html += '<div class="card"><h3>Full year</h3><div class="hint">Every category you\'ve set up for every month. Cells with a dashed outline are filled from your transactions; click one to see them. The totals update when you click away from a field. A blank, grayed out month means that category isn\'t set up for that quarter yet. You can add it back on Budget Setup tab to log an amount there.</div>'+renderMatrixTable("group:"+group)+'</div>';
   return html;
+}
+
+function txCatOptions(group, date, selectedId){
+  var cats = (state.categories[group]||[]).filter(function(c){ return !(group==="income" && /self-employ/i.test(c.label)); });
+  var m = txMonthOf(date);
+  var qid = m ? monthToQuarter(m) : null;
+  var list = qid ? cats.filter(function(c){ return catIsActiveInQuarter(c, qid) || c.id===selectedId; }) : cats;
+  if(!list.length) list = cats;
+  return list.map(function(c){
+    var off = qid && !catIsActiveInQuarter(c, qid);
+    return '<option value="'+c.id+'"'+(c.id===selectedId?' selected':'')+'>'+escHtml(c.label)+(off?' (not in '+quarterLabel(qid)+')':'')+'</option>';
+  }).join('');
+}
+function txCatLabel(group, catId){
+  var c = (state.categories[group]||[]).find(function(x){ return x.id===catId; });
+  return c ? c.label : "";
+}
+function txDefaultDate(){
+  var now = new Date();
+  var today = now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+  if(monthKeyFromDate(today)) return today;
+  return monthKeyToDate(MONTHS.indexOf(state.ui.activeMonth)!==-1 ? state.ui.activeMonth : MONTHS[0]);
+}
+function txDraft(){
+  if(!state.ui.txDraft) state.ui.txDraft = {date:"", group:"variable", catId:""};
+  var d = state.ui.txDraft;
+  if(!d.date) d.date = txDefaultDate();
+  if(!TX_TYPE_LABEL[d.group]) d.group = "variable";
+  return d;
+}
+
+function render_transactions(){
+  var d = txDraft();
+  var fMonth = state.ui.txMonth || "all", fGroup = state.ui.txGroup || "all";
+  var all = state.transactions || [];
+  var inPeriod = all.filter(function(t){ return fMonth==="all" ? !!txMonthOf(t.date) : txMonthOf(t.date)===fMonth; });
+  function sumG(groups){ return inPeriod.reduce(function(a,t){ return a+(groups.indexOf(t.group)!==-1 ? (Number(t.amount)||0) : 0); },0); }
+  var periodLabel = fMonth==="all" ? RANGE_SHORT : MONTH_LABEL[fMonth];
+
+  var html = pageHead(["Monthly Tracker"],"Transactions","Log money in and out as it happens. Pick the type and category, and it lands in the right Monthly Tracker tab and month on its own, based on the date.");
+  var showHelp = state.ui.txHelp!==false;
+  html += '<div class="card"><div class="card-head"><h3>How this page works</h3><button class="btn small ghost" data-role="tx-help-toggle">'+(showHelp?'Hide':'Show')+' instructions</button></div>';
+  if(showHelp){
+    html += '<div class="grid-2" style="margin-top:12px;">'+
+      howCard("plus","1. Log it as it happens","Every time money comes in or goes out, add it here: the date, what kind of money it is, the category, a short note, and the amount. Always type the amount as a positive number.")+
+      howCard("list","2. Pick the right type","Income is money coming in. Fixed Expenses are bills that stay the same (rent, phone). Variable Expenses change month to month (groceries, gas). Debt Payments, Savings and Investing are money you move toward your goals.")+
+      howCard("map","3. It fills your tracker for you","The date decides the month, and the type decides the tab. A $84 grocery run on March 5 adds $84 to Variable Expenses › Groceries › March. Your Annual Dashboard and Quarterly Planner update too.")+
+      howCard("gear","4. Categories come from Budget Setup","The category list is the one you set up on Budget Setup for that period. Need a new one? Add it there and it shows up here right away.")+
+      howCard("check","5. Fix or delete anytime","Edit any row in the log below and the tracker updates instantly. Clicking a dashed-outline cell on any tracker tab brings you back here to see what\'s in it. Made a mistake? Use Undo in the sidebar.")+
+      howCard("repeat","6. Mix and match","Prefer to type a monthly total straight into a tracker tab? That still works. Anything typed in directly is added to your transactions, never replaced.")+
+    '</div>';
+    html += '<div class="callout" style="margin:16px 0 0;"><strong>Business money lives in its own section.</strong> If you\'re self-employed, keep business money out of this page so your personal budget and your taxes stay accurate:<br>'+
+      '• <strong>Business income</strong> (1099s, client payments, brand deals) goes on the <a href="#" data-role="tx-nav" data-target="se-income">Business Income</a> page. It shows up automatically in the "Self-Employment Income" row on your Income tab, and feeds your Estimated Taxes. That\'s why it isn\'t a category here.<br>'+
+      '• <strong>Business expenses</strong> (software, supplies, contract help) go on the <a href="#" data-role="tx-nav" data-target="se-expenses">Business Expenses</a> page. They\'re subtracted from your business income to get the net self-employment income your taxes are based on, and they still count in your dashboard spending.<br>'+
+      '• <strong>Paying yourself?</strong> A transfer from your business account to your personal account isn\'t new income. Only log it here if you aren\'t already logging that money on Business Income, so it doesn\'t get counted twice.</div>';
+  }
+  html += '</div>';
+  html += '<div class="card"><h3>Add a transaction</h3><div class="hint">Amounts are always positive; the type decides whether it\'s money in or money out. Press Enter to add quickly.</div>';
+  html += '<div class="tx-form" id="txForm">'+
+    '<div class="field"><label for="txDate">Date</label><input type="date" id="txDate" data-role="tx-draft" data-field="date" min="'+DATE_MIN+'" max="'+DATE_MAX+'" value="'+escAttr(d.date)+'"></div>'+
+    '<div class="field"><label for="txGroup">Type</label><select id="txGroup" data-role="tx-draft" data-field="group">'+TX_TYPES.map(function(t){ return '<option value="'+t.group+'"'+(t.group===d.group?' selected':'')+'>'+t.label+'</option>'; }).join('')+'</select></div>'+
+    '<div class="field"><label for="txCat">Category</label><select id="txCat" data-role="tx-draft" data-field="catId">'+txCatOptions(d.group, d.date, d.catId)+'</select></div>'+
+    '<div class="field tx-desc"><label for="txDesc">Description</label><input id="txDesc" placeholder="e.g. Trader Joe\'s" autocomplete="off"></div>'+
+    '<div class="field"><label for="txAmt">Amount</label><input id="txAmt" class="num-input" type="number" step="0.01" min="0" inputmode="decimal" placeholder="0.00"></div>'+
+    '<div class="field"><label class="sr-only" for="txAddBtn">Add</label><button class="btn primary" id="txAddBtn" data-role="tx-add">'+ic("plus")+' Add</button></div>'+
+  '</div>';
+  if(d.group==="income") html += '<div class="hint" style="margin:8px 0 0;">Business / 1099 income goes on the <a href="#" data-role="tx-nav" data-target="se-income">Business Income</a> page instead, so it also feeds your tax calculator.</div>';
+  html += '<div class="tx-msg" id="txMsg" role="status"></div></div>';
+
+  html += '<div class="grid-4" style="margin-bottom:18px;">'+
+    statCard("Money in", "income, "+periodLabel, fmtMoney(sumG(["income"]),{cents:true}))+
+    statCard("Spent", "fixed + variable, "+periodLabel, fmtMoney(sumG(["fixed","variable"]),{cents:true}))+
+    statCard("Debt paid", periodLabel, fmtMoney(sumG(["debt"]),{cents:true}))+
+    statCard("Saved + invested", periodLabel, fmtMoney(sumG(["savings","investing"]),{cents:true}))+
+  '</div>';
+
+  var rows = inPeriod.filter(function(t){ return fGroup==="all" || t.group===fGroup; });
+  var outside = all.filter(function(t){ return !txMonthOf(t.date); });
+  if(fGroup!=="all") outside = outside.filter(function(t){ return t.group===fGroup; });
+  rows = rows.concat(fMonth==="all" ? outside : []);
+  rows.sort(function(a,b){ return (b.date||"").localeCompare(a.date||"") || (b.created||0)-(a.created||0); });
+
+  html += '<div class="card"><div class="card-head"><h3>Transaction log</h3><span class="num" style="color:var(--ink-2);font-size:12.5px;">'+rows.length+' shown</span></div>';
+  html += '<div class="pill-row" style="margin-bottom:8px;"><button class="pill" data-role="tx-filter-month" data-month="all" aria-pressed="'+(fMonth==="all")+'">All months</button>'+
+    MONTHS.map(function(m){ return '<button class="pill" data-role="tx-filter-month" data-month="'+m+'" aria-pressed="'+(fMonth===m)+'">'+MONTH_SHORT[m]+'</button>'; }).join('')+'</div>';
+  html += '<div class="pill-row" style="margin-bottom:14px;"><button class="pill" data-role="tx-filter-group" data-group="all" aria-pressed="'+(fGroup==="all")+'">All types</button>'+
+    TX_TYPES.map(function(t){ return '<button class="pill" data-role="tx-filter-group" data-group="'+t.group+'" aria-pressed="'+(fGroup===t.group)+'">'+t.label+'</button>'; }).join('')+'</div>';
+
+  html += '<div class="table-wrap"><table class="grid" style="table-layout:fixed;min-width:760px;"><colgroup><col style="width:150px"><col style="width:160px"><col style="width:190px"><col><col style="width:120px"><col style="width:40px"></colgroup>'+
+    '<thead><tr><th>Date</th><th style="text-align:left;">Type</th><th style="text-align:left;">Category</th><th style="text-align:left;">Description</th><th>Amount</th><th></th></tr></thead><tbody>';
+  rows.forEach(function(t){
+    var counted = !!txMonthOf(t.date);
+    html += '<tr>'+
+      '<td><input type="date" class="cell standalone" style="width:130px;text-align:left;" data-role="tx-field" data-field="date" data-id="'+t.id+'" min="'+DATE_MIN+'" max="'+DATE_MAX+'" value="'+escAttr(t.date||"")+'">'+(counted?'':'<span class="tx-outside">Not counted, outside '+RANGE_SHORT+'</span>')+'</td>'+
+      '<td style="text-align:left;"><select class="tx-sel" data-role="tx-field" data-field="group" data-id="'+t.id+'" aria-label="Type">'+TX_TYPES.map(function(x){ return '<option value="'+x.group+'"'+(x.group===t.group?' selected':'')+'>'+x.label+'</option>'; }).join('')+'</select></td>'+
+      '<td style="text-align:left;"><select class="tx-sel" data-role="tx-field" data-field="catId" data-id="'+t.id+'" aria-label="Category">'+txCatOptions(t.group, t.date, t.catId)+'</select></td>'+
+      '<td style="text-align:left;"><input class="row-label-input" data-role="tx-field" data-field="desc" data-id="'+t.id+'" value="'+escAttr(t.desc||"")+'" placeholder="Description"></td>'+
+      '<td><input class="cell num-input standalone" style="width:96px;'+(t.group==="income"?'color:var(--sage);':'')+'" type="number" step="0.01" min="0" data-role="tx-field" data-field="amount" data-id="'+t.id+'" value="'+(t.amount||"")+'"></td>'+
+      '<td><button class="row-del" data-role="tx-del" data-id="'+t.id+'" aria-label="Delete transaction" title="Delete">'+ic("x")+'</button></td></tr>';
+  });
+  if(!rows.length) html += '<tr><td colspan="6" class="empty-state">'+(all.length?'Nothing logged for this filter yet.':'No transactions yet. Add your first one above and watch it show up in the Monthly Tracker.')+'</td></tr>';
+  html += '</tbody></table></div></div>';
+  return html;
+}
+
+function addTransactionFromForm(){
+  var d = txDraft();
+  var msg = document.getElementById("txMsg");
+  var amtEl = document.getElementById("txAmt"), descEl = document.getElementById("txDesc"), catEl = document.getElementById("txCat");
+  var amt = Math.abs(parseFloat(amtEl && amtEl.value)||0);
+  var catId = catEl ? catEl.value : d.catId;
+  if(!txMonthOf(d.date)){ if(msg) msg.textContent = "Pick a date between November 1, 2026 and December 31, 2027."; return false; }
+  if(!catId){ if(msg) msg.textContent = "Pick a category (add one on Budget Setup if the list is empty)."; return false; }
+  if(!amt){ if(msg) msg.textContent = "Enter an amount."; if(amtEl) amtEl.focus(); return false; }
+  pushUndo();
+  if(!state.transactions) state.transactions = [];
+  state.transactions.push({id:uid(), date:d.date, group:d.group, catId:catId, desc:(descEl?descEl.value.trim():""), amount:Math.round(amt*100)/100, created:Date.now()});
+  d.catId = catId;
+  saveState(); renderMain();
+  var flash = document.getElementById("txMsg");
+  if(flash){ flash.style.color = "var(--sage)"; flash.textContent = "Added to "+TX_TYPE_LABEL[d.group]+" › "+txCatLabel(d.group, catId)+" for "+MONTH_LABEL[txMonthOf(d.date)]+"."; }
+  var desc = document.getElementById("txDesc"); if(desc) desc.focus();
+  return true;
 }
 
 function monthPicker(){
@@ -1273,7 +1481,7 @@ function render_dashboard(){
   ];
   var maxBreak = Math.max.apply(null, breakdownGroups.map(function(g){return g.total;}).concat([1]));
 
-  var html = pageHead(["Big Picture"],"Annual Dashboard","Your whole 2027 year, at a glance.");
+  var html = pageHead(["Big Picture"],"Annual Dashboard","Your whole tracker at a glance: a head start in Nov–Dec 2026, then all of 2027.");
   html += '<div class="grid-4">'+
     statCard("Total income","projected, all sources", fmtMoney(totalIncome))+
     statCard("Total outflow","expenses + debt + savings + investing", fmtMoney(totalOut))+
@@ -1434,13 +1642,13 @@ function render_subscriptions(){
 function render_freelanceRate(){
   var r = state.freelanceRate;
   var calc = freelanceRateCalc();
-  var loggedExpenses = seExpenseAnnualTotal();
+  var loggedExpenses = seExpense2027();
   var html = pageHead(["Self-Employed"],"Freelance Rate Calculator","Figure out what to charge based on the income you actually want to take home.");
   html += '<div class="card"><div class="grid-2">'+
     field_num("freelance-field","targetIncome","Target annual take-home income", r.targetIncome)+
     field_num("freelance-field","annualExpenses","Annual business expenses", r.annualExpenses)+
   '</div>';
-  html += '<div class="hint" style="margin:-4px 0 14px;">Logged business expenses this year on the Business Expenses page: '+fmtMoney(loggedExpenses)+'. Feel free to use that number above.</div>';
+  html += '<div class="hint" style="margin:-4px 0 14px;">Business expenses logged for 2027 on the Business Expenses page: '+fmtMoney(loggedExpenses)+'. Feel free to use that number above.</div>';
   html += '<div class="grid-3">'+
     field_num("freelance-field","taxBufferPct","Tax buffer (%)", r.taxBufferPct)+
     field_num("freelance-field","hoursPerWeek","Billable hours per week", r.hoursPerWeek)+
@@ -1494,7 +1702,7 @@ function render_seIncome(){
   var lines = state.selfEmployed.incomeLines;
   var annual = seIncomeAnnualTotal();
   var html = pageHead(["Self-Employed"],"Business Income","Log every business income transaction as it lands, by client, by project, whatever makes sense to you. It rolls automatically into your Income tracker tab and your tax calculator.");
-  html += '<div class="grid-3">'+statCard("Logged this year","2027 total", fmtMoney(annual))+
+  html += '<div class="grid-3">'+statCard("Total logged",RANGE_SHORT, fmtMoney(annual))+
     statCard("Average per entry", lines.length+" entries logged", fmtMoney(lines.length?annual/lines.length:0))+
     statCard("This month", MONTH_LABEL[state.ui.activeMonth], fmtMoney(seIncomeMonthTotal(state.ui.activeMonth)))+'</div>';
   html += '<div class="card"><h3>Income by month</h3>'+svgBarChart({ariaLabel:"Self-employment income by month", money:true, groups:MONTHS.map(function(m){return {label:MONTH_SHORT[m], bars:[{label:"SE income", color:"var(--c-blue)", value:seIncomeMonthTotal(m)}]};})})+'</div>';
@@ -1518,8 +1726,8 @@ function render_seExpenses(){
   var netSE = incAnnual-expAnnual;
   var html = pageHead(["Self-Employed"],"Business Expenses","The categories below are common self-employment write-offs, but you can always rename and add your own!");
   html += '<div class="callout">What\'s actually deductible depends on your situation. When in doubt, run it by a tax pro.</div>';
-  html += '<div class="grid-3">'+statCard("Business income","2027 total", fmtMoney(incAnnual))+
-    statCard("Business expenses","2027 total", fmtMoney(expAnnual))+
+  html += '<div class="grid-3">'+statCard("Business income",RANGE_SHORT, fmtMoney(incAnnual))+
+    statCard("Business expenses",RANGE_SHORT, fmtMoney(expAnnual))+
     statCard("Net self-employment income","income − expenses", fmtMoney(netSE), netSE>=0?"good":"bad")+'</div>';
   html += '<div class="card"><h3>Full year</h3><div class="hint">Common deductible categories for you to track every month.</div>'+renderMatrixTable("se-expense")+'</div>';
   return html;
@@ -1542,10 +1750,10 @@ function render_taxes(){
 
   html += '<div class="card"><h3>Net self-employment income used for this estimate</h3>'+
     '<div class="chip-toggle" style="margin-bottom:12px;">'+
-      '<button data-role="tax-field" data-field="useProjection" data-val="false" aria-pressed="'+(!t.useProjection)+'">Use actual ledger ('+fmtMoney(seNetAnnual())+')</button>'+
+      '<button data-role="tax-field" data-field="useProjection" data-val="false" aria-pressed="'+(!t.useProjection)+'">Use actual 2027 ledger ('+fmtMoney(seNetAnnual())+')</button>'+
       '<button data-role="tax-field" data-field="useProjection" data-val="true" aria-pressed="'+(!!t.useProjection)+'">Use my own projection</button>'+
     '</div>'+
-    (t.useProjection ? field_num("tax-field","projectedAnnualNetSE","Projected annual net self-employment income", t.projectedAnnualNetSE) : '<div class="hint">Pulled live from Business Income minus Business Expenses.</div>')+
+    (t.useProjection ? field_num("tax-field","projectedAnnualNetSE","Projected annual net self-employment income", t.projectedAnnualNetSE) : '<div class="hint">Pulled live from Business Income minus Business Expenses, Jan–Dec 2027 only. Anything logged in Nov–Dec 2026 counts toward your 2026 taxes, so it\'s left out here.</div>')+
   '</div>';
 
   html += '<div class="card"><h3>Safe harbor method</h3><div class="hint">The IRS penalty-free minimum is the smaller of these two: pick which one you\'re aiming to hit.</div>'+
@@ -1631,7 +1839,6 @@ function render_settings(){
     '</div><div id="importMsg" style="font-size:12px;color:var(--ink-2);margin-top:8px;"></div></div>';
   html += '<div class="card"><h3>Start over</h3><div class="hint">Clears every number on this device. Export a backup first if you want to keep anything.</div>'+
     '<button class="btn danger" id="btnReset">'+ic("x")+' Reset everything</button></div>';
-  html += '<div class="card"><h3>About this Budget</h3><div class="hint">Your 2027 Budget Template, built by Whealth with Meag. A from-scratch revamp of the original budget template, redesigned to work for W-2 employees, self-employed folks, and everyone in between, with a real quarterly estimated-tax calculator built in.</div></div>';
   return html;
 }
 
@@ -1646,9 +1853,9 @@ function addCategory(scope, quarterId){
   var sc = getScope(scope);
   var id = uid();
   if(scope.indexOf("group:")===0){
-    var activeQ = {q1:false,q2:false,q3:false,q4:false};
+    var activeQ = blankQ(false);
     activeQ[quarterId||"q1"] = true;
-    sc.cats.push({id:id, label:"New category", budgetQ:{q1:0,q2:0,q3:0,q4:0}, activeQ:activeQ});
+    sc.cats.push({id:id, label:"New category", budgetQ:blankQ(0), activeQ:activeQ});
   } else {
     sc.cats.push({id:id, label:"New category", budget:0});
   }
@@ -1666,7 +1873,7 @@ function deactivateCategoryForQuarter(scope, catId, quarterId){
   var sc = getScope(scope);
   var cat = sc.cats.find(function(c){ return c.id===catId; });
   if(cat){
-    if(!cat.activeQ) cat.activeQ = {q1:true,q2:true,q3:true,q4:true};
+    if(!cat.activeQ) cat.activeQ = blankQ(true);
     cat.activeQ[quarterId] = false;
   }
 }
@@ -1674,7 +1881,7 @@ function activateCategoryForQuarter(scope, catId, quarterId){
   var sc = getScope(scope);
   var cat = sc.cats.find(function(c){ return c.id===catId; });
   if(cat){
-    if(!cat.activeQ) cat.activeQ = {q1:true,q2:true,q3:true,q4:true};
+    if(!cat.activeQ) cat.activeQ = blankQ(true);
     cat.activeQ[quarterId] = true;
   }
 }
@@ -1711,7 +1918,7 @@ document.addEventListener("change", function(e){
     var cat2 = sc2.cats.find(function(c){return c.id===t.dataset.cat;});
     if(cat2){
       if(t.dataset.quarter){
-        if(!cat2.budgetQ) cat2.budgetQ = {q1:0,q2:0,q3:0,q4:0};
+        if(!cat2.budgetQ) cat2.budgetQ = blankQ(0);
         cat2.budgetQ[t.dataset.quarter] = parseFloat(t.value)||0;
       } else {
         cat2.budget = parseFloat(t.value)||0;
@@ -1736,6 +1943,27 @@ document.addEventListener("change", function(e){
     var w = state.weekPlanner.find(function(x){return x.id===t.dataset.id;});
     if(w){ w[t.dataset.field] = (t.dataset.field==="done") ? t.checked : t.value; }
     rerender=false;
+  } else if(role==="tx-draft"){
+    var dr = txDraft();
+    dr[t.dataset.field] = t.value;
+    if(t.dataset.field==="group") dr.catId = "";
+    undoStack.pop(); refreshUndoBtn(); // typing in the add form isn't a budget change
+    // keep whatever was typed in description/amount across the re-render
+    var keepDesc = (document.getElementById("txDesc")||{}).value, keepAmt = (document.getElementById("txAmt")||{}).value;
+    saveState(); renderMain();
+    var de = document.getElementById("txDesc"), ae = document.getElementById("txAmt");
+    if(de && keepDesc) de.value = keepDesc;
+    if(ae && keepAmt) ae.value = keepAmt;
+    return;
+  } else if(role==="tx-field"){
+    var tx = (state.transactions||[]).find(function(x){ return x.id===t.dataset.id; });
+    if(tx){
+      var tf = t.dataset.field;
+      if(tf==="amount") tx.amount = Math.round(Math.abs(parseFloat(t.value)||0)*100)/100;
+      else if(tf==="group"){ tx.group = t.value; var first = (state.categories[t.value]||[]).filter(function(c){ return !(t.value==="income" && /self-employ/i.test(c.label)); })[0]; tx.catId = first ? first.id : ""; }
+      else tx[tf] = t.value;
+      if(tf==="desc") rerender = false;
+    }
   } else if(role==="se-income-field"){
     var l = state.selfEmployed.incomeLines.find(function(x){return x.id===t.dataset.id;});
     if(l) l[t.dataset.field] = (t.dataset.field==="amount") ? (parseFloat(t.value)||0) : t.value;
@@ -1779,10 +2007,17 @@ document.addEventListener("click", function(e){
   if(!t) return;
   var role = t.getAttribute("data-role");
   var handled = true;
-  if(role!=="set-month" && role!=="setup-quarter") pushUndo();
+  if(role==="tx-add"){ e.preventDefault(); addTransactionFromForm(); return; }
+  var navOnly = ["set-month","setup-quarter","tx-goto","tx-filter-month","tx-filter-group","tx-help-toggle","tx-nav"];
+  if(navOnly.indexOf(role)===-1) pushUndo();
 
   if(role==="add-cat"){ addCategory(t.dataset.scope, t.dataset.quarter); }
   else if(role==="del-cat"){ delCategory(t.dataset.scope, t.dataset.cat); }
+  else if(role==="del-cat-forever"){
+    delCategory(t.dataset.scope, t.dataset.cat);
+    var dcg = t.dataset.scope.slice(6);
+    state.transactions = (state.transactions||[]).filter(function(x){ return !(x.group===dcg && x.catId===t.dataset.cat); });
+  }
   else if(role==="deactivate-cat-quarter"){ deactivateCategoryForQuarter(t.dataset.scope, t.dataset.cat, t.dataset.quarter); }
   else if(role==="activate-cat-quarter"){ activateCategoryForQuarter(t.dataset.scope, t.dataset.cat, t.dataset.quarter); }
   else if(role==="setup-quarter"){ state.ui.setupQuarter = t.dataset.quarter; }
@@ -1791,6 +2026,20 @@ document.addEventListener("click", function(e){
     state.profile.isSelfEmployed = (v==="true") ? true : (v==="false" ? false : "mix");
   }
   else if(role==="set-month"){ state.ui.activeMonth = t.dataset.month; }
+  else if(role==="tx-filter-month"){ state.ui.txMonth = t.dataset.month; }
+  else if(role==="tx-help-toggle"){ state.ui.txHelp = (state.ui.txHelp===false); }
+  else if(role==="tx-nav"){ e.preventDefault(); state.ui.activeSection = t.dataset.target; window.scrollTo(0,0); }
+  else if(role==="tx-filter-group"){ state.ui.txGroup = t.dataset.group; }
+  else if(role==="tx-goto"){
+    state.ui.txMonth = t.dataset.month || "all";
+    state.ui.txGroup = t.dataset.group || "all";
+    var dg = txDraft();
+    if(t.dataset.group && dg.group!==t.dataset.group){ dg.group = t.dataset.group; dg.catId = ""; }
+    if(t.dataset.month && txMonthOf(dg.date)!==t.dataset.month){ dg.date = monthKeyToDate(t.dataset.month); }
+    state.ui.activeSection = "transactions";
+    window.scrollTo(0,0);
+  }
+  else if(role==="tx-del"){ state.transactions = (state.transactions||[]).filter(function(x){ return x.id!==t.dataset.id; }); }
   else if(role==="ef-c-add"){ state.emergencyFund.contributions.push({id:uid(),date:"",note:"",amount:0}); }
   else if(role==="ef-c-del"){ state.emergencyFund.contributions = state.emergencyFund.contributions.filter(function(c){return c.id!==t.dataset.id;}); }
   else if(role==="se-income-add"){ state.selfEmployed.incomeLines.push({id:uid(),date:"",client:"",note:"",amount:0}); }
@@ -1911,6 +2160,11 @@ document.addEventListener("keydown", function(e){
     e.preventDefault();
     doUndo();
   }
+});
+document.addEventListener("keydown", function(e){
+  if(e.key!=="Enter") return;
+  var el = e.target;
+  if(el && (el.id==="txDesc" || el.id==="txAmt")){ e.preventDefault(); addTransactionFromForm(); }
 });
 refreshUndoBtn();
 
